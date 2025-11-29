@@ -948,7 +948,13 @@ function Navbar() {
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      const element = document.getElementById(id);
+      if (element) {
+        const navbarHeight = 80; // Account for navbar height
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - navbarHeight;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      }
     }
     setMobileMenuOpen(false);
   };
