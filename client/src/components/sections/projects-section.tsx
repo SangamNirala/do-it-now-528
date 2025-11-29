@@ -110,7 +110,7 @@ function AnimatedMetric({ value, label }: { value: string; label: string }) {
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="pt-16 spacing-premium bg-background section-pattern-default relative contain-strict" data-testid="section-projects" role="region" aria-label="Featured projects section">
+    <section id="projects" className="pt-16 spacing-premium bg-background section-pattern-default relative" data-testid="section-projects" role="region" aria-label="Featured projects section">
       <div className="section-divider" />
       <div className="content-max-width mx-auto section-spacing-horizontal">
         <AnimatedSection>
@@ -121,14 +121,14 @@ export function ProjectsSection() {
           </div>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <AnimatedSection key={index}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="project-card card-depth-3 h-full p-0 overflow-hidden group transition-all duration-300 transform hover:scale-105 rounded-lg card-3d-hover hover-depth"
+                className="project-card card-depth-3 p-0 overflow-hidden group transition-all duration-300 transform hover:scale-105 rounded-lg card-3d-hover hover-depth flex flex-col"
                 data-testid={`card-project-${index}`}
               >
                 <div className={`aspect-video rounded-t-lg bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
@@ -208,13 +208,13 @@ export function ProjectsSection() {
                   <div className="absolute bottom-3 left-3 text-white font-semibold text-lg drop-shadow-lg">{project.title}</div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors" data-testid={`text-project-title-${index}`}>
                     {project.title}
                   </h3>
                   <p className="text-muted-foreground mb-4 text-sm">{project.description}</p>
 
-                  <ul className="space-y-2 mb-6">
+                  <ul className="space-y-2 mb-4 flex-1">
                     {project.highlights.map((highlight, i) => (
                       <li key={i} className="text-xs text-muted-foreground flex gap-2">
                         <span className="text-primary mt-1 shrink-0 flex-shrink-0">•</span>
