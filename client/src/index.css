@@ -831,13 +831,16 @@
     box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
   }
 
-  /* Light mode cursor visibility */
+  /* Light mode cursor visibility - darker */
   .light .custom-cursor-glow {
-    border-color: rgba(59, 130, 246, 0.8) !important;
+    border-color: rgba(59, 130, 246, 1) !important;
+    opacity: 1 !important;
   }
 
   .light .custom-cursor-dot {
-    background-color: rgba(59, 130, 246, 0.7) !important;
+    background-color: rgba(59, 130, 246, 1) !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 6px rgba(59, 130, 246, 0.8);
   }
 
   /* Cursor Hover Areas */

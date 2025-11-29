@@ -40,9 +40,9 @@ export function CustomCursor() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const blendMode = theme === "light" ? "multiply" : "screen";
-  const ringClass = theme === "light" ? "border-primary/80" : "border-primary/60";
-  const dotClass = theme === "light" ? "bg-primary/70" : "bg-primary";
+  const blendMode = theme === "light" ? "darken" : "screen";
+  const ringClass = theme === "light" ? "border-primary" : "border-primary/60";
+  const dotClass = theme === "light" ? "bg-primary" : "bg-primary";
 
   return (
     <>
