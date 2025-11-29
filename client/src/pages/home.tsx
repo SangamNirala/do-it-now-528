@@ -8,6 +8,7 @@ import { CustomCursor } from "@/components/custom-cursor";
 import { BreadcrumbNav } from "@/components/navigation/breadcrumb-nav";
 import { TableOfContents } from "@/components/navigation/table-of-contents";
 import { FloatingNav } from "@/components/navigation/floating-nav";
+import { ScrollAnimation, SectionHeading, StaggeredContainer, StaggeredItem } from "@/components/animations/scroll-animations";
 import { GlossaryDialog } from "@/components/glossary/glossary-dialog";
 import { GlossaryTooltip } from "@/components/glossary/glossary-tooltip";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
@@ -824,21 +825,14 @@ function EducationSection() {
     <section id="education" className="pt-16 spacing-premium bg-background section-pattern-default relative" data-testid="section-education">
       <div className="section-divider" />
       <div className="content-max-width mx-auto section-spacing-horizontal">
-        <AnimatedSection>
-          <div className="flex flex-col items-center justify-center gap-3 mb-12">
-            <GraduationCap className="h-8 w-8 text-primary" />
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Education</h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
-          </div>
-        </AnimatedSection>
+        <SectionHeading className="flex flex-col items-center justify-center gap-3 mb-12">
+          <GraduationCap className="h-8 w-8 text-primary" />
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Education</h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
+        </SectionHeading>
 
-        <AnimatedSection>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="card-depth-2 p-8 text-center education-card card-colored-border border-l-4 border-l-cyan-500 cursor-pointer" data-testid="card-education">
+        <ScrollAnimation variant="scaleIn">
+          <Card className="card-depth-2 p-8 text-center education-card card-colored-border border-l-4 border-l-cyan-500 cursor-pointer" data-testid="card-education">
               <motion.div 
                 whileHover={{ scale: 1.15, rotate: 5 }}
                 className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center trophy-icon-animate"
@@ -861,8 +855,7 @@ function EducationSection() {
                 CGPA: 7.0/10
               </motion.span>
             </Card>
-          </motion.div>
-        </AnimatedSection>
+        </ScrollAnimation>
       </div>
     </section>
   );
@@ -892,22 +885,15 @@ function HonorsSection() {
     <section id="honors" className="spacing-premium bg-card section-pattern-subtle relative" data-testid="section-honors">
       <div className="section-divider" />
       <div className="content-max-width mx-auto section-spacing-horizontal">
-        <AnimatedSection>
-          <div className="flex flex-col items-center justify-center gap-3 mb-12">
-            <Trophy className="h-8 w-8 text-primary" />
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Honors & Achievements</h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
-          </div>
-        </AnimatedSection>
+        <SectionHeading className="flex flex-col items-center justify-center gap-3 mb-12">
+          <Trophy className="h-8 w-8 text-primary" />
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Honors & Achievements</h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
+        </SectionHeading>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <StaggeredContainer className="grid md:grid-cols-2 gap-6">
           {honors.map((honor, index) => (
-            <AnimatedSection key={index}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
+            <StaggeredItem key={index}>
                 <Card
                   className={`card-depth-2 p-6 h-full honor-card card-colored-border border-l-4 ${honor.borderColor} cursor-pointer hover-elevate`}
                   data-testid={`card-honor-${index}`}
@@ -935,10 +921,9 @@ function HonorsSection() {
                     </div>
                   </div>
                 </Card>
-              </motion.div>
-            </AnimatedSection>
+            </StaggeredItem>
           ))}
-        </div>
+        </StaggeredContainer>
       </div>
     </section>
   );

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Code2, Brain, Rocket, Zap, Github, ExternalLink } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { useInView } from "framer-motion";
-import { StaggerList } from "@/components/animations/stagger-list";
+import { StaggeredContainer, StaggeredItem, SectionHeading } from "@/components/animations/scroll-animations";
 
 const projects = [
   {
@@ -113,17 +113,15 @@ export function ProjectsSection() {
     <section id="projects" className="pt-16 spacing-premium bg-background section-pattern-default relative" data-testid="section-projects" role="region" aria-label="Featured projects section">
       <div className="section-divider" />
       <div className="content-max-width mx-auto section-spacing-horizontal">
-        <AnimatedSection>
-          <div className="flex flex-col items-center justify-center gap-3 mb-12">
-            <Code2 className="h-8 w-8 text-primary" />
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Featured Projects</h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
-          </div>
-        </AnimatedSection>
+        <SectionHeading className="flex flex-col items-center justify-center gap-3 mb-12">
+          <Code2 className="h-8 w-8 text-primary" />
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Featured Projects</h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
+        </SectionHeading>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <StaggeredContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <AnimatedSection key={index}>
+            <StaggeredItem key={index}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -242,9 +240,9 @@ export function ProjectsSection() {
                   </div>
                 </div>
               </motion.div>
-            </AnimatedSection>
+            </StaggeredItem>
           ))}
-        </div>
+        </StaggeredContainer>
       </div>
     </section>
   );
