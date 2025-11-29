@@ -162,39 +162,70 @@ export function AIChatDialog({ isOpen, onClose, websiteContent }: AIChatDialogPr
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -20, scale: 0.95 }}
-          transition={{ duration: 0.3 }}
-          className="fixed top-20 left-0 right-0 mx-4 md:mx-auto md:max-w-2xl z-40 bg-gradient-to-br from-card to-card/80 border border-border/50 rounded-2xl shadow-2xl backdrop-blur-sm overflow-hidden"
-          data-testid="ai-chat-dialog"
-          style={{ pointerEvents: "auto" }}
-        >
-          {/* Animated gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+        <>
+          {/* Enhanced backdrop blur overlay */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/20 backdrop-blur-md z-39"
+            onClick={onClose}
+            data-testid="ai-chat-backdrop"
+          />
           
-          <div className="relative flex items-center justify-between p-5 border-b border-border/30 bg-gradient-to-r from-primary/5 to-transparent">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-primary/10 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed top-20 left-0 right-0 mx-4 md:mx-auto md:max-w-2xl z-40 bg-gradient-to-br from-card via-card to-card/95 border border-primary/20 rounded-2xl shadow-2xl backdrop-blur-2xl overflow-hidden"
+            data-testid="ai-chat-dialog"
+            style={{ pointerEvents: "auto" }}
+          >
+            {/* Animated gradient glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/5 opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            
+            {/* Animated border glow */}
+            <motion.div
+              className="absolute inset-0 rounded-2xl pointer-events-none"
+              style={{
+                background: "linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent)",
+                backgroundSize: "200% 200%",
+              }}
+              animate={{
+                backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
+          
+          <div className="relative flex items-center justify-between p-5 border-b border-primary/20 bg-gradient-to-r from-primary/10 to-transparent">
+            <motion.div className="flex items-center gap-3" whileHover={{ x: 4 }} transition={{ duration: 0.3 }}>
+              <motion.div 
+                className="p-2 rounded-lg bg-primary/20 backdrop-blur-sm"
+                whileHover={{ scale: 1.1, rotate: 10 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
                 <Sparkles className="h-5 w-5 text-primary" />
-              </div>
+              </motion.div>
               <div>
                 <h3 className="text-base font-semibold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Ask about Sangam</h3>
-                <p className="text-xs text-muted-foreground">Powered by AI</p>
+                <p className="text-xs text-muted-foreground">Powered by Gemini AI</p>
               </div>
-            </div>
-            <button
+            </motion.div>
+            <motion.button
               onClick={onClose}
-              className="p-1.5 hover:bg-primary/10 rounded-lg transition-all duration-200 hover-elevate"
+              className="p-1.5 hover:bg-primary/20 rounded-lg transition-all duration-200 hover-elevate"
               aria-label="Close AI chat"
               data-testid="button-close-ai-chat"
+              whileHover={{ scale: 1.1, rotate: 90 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
             >
               <X className="h-5 w-5" />
-            </button>
+            </motion.button>
           </div>
 
-          <div className="relative p-4 space-y-3 max-h-80 overflow-y-auto bg-background/30 backdrop-blur-sm">
+          <div className="relative p-4 space-y-3 max-h-80 overflow-y-auto bg-background/40 backdrop-blur-xl">
             {messages.length === 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -213,23 +244,28 @@ export function AIChatDialog({ isOpen, onClose, websiteContent }: AIChatDialogPr
             {messages.map((msg, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, y: 10, x: msg.role === "user" ? 20 : -20 }}
+                animate={{ opacity: 1, y: 0, x: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className={`flex items-end gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 data-testid={`chat-message-${idx}`}
               >
                 {msg.role === "assistant" && (
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                  <motion.div 
+                    className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/30 flex items-center justify-center"
+                    whileHover={{ scale: 1.2, rotate: 360 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <Sparkles className="h-3.5 w-3.5 text-primary" />
-                  </div>
+                  </motion.div>
                 )}
-                <div
-                  className={`rounded-2xl overflow-hidden ${
+                <motion.div
+                  className={`rounded-2xl overflow-hidden transition-all duration-300 ${
                     msg.role === "user"
-                      ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-br-none shadow-lg px-4 py-2.5 max-w-md"
-                      : "bg-muted/60 text-muted-foreground rounded-bl-none backdrop-blur-sm border border-border/30 px-4 py-3 max-w-2xl"
+                      ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-br-none shadow-lg px-4 py-2.5 max-w-md hover:shadow-xl hover:shadow-primary/50"
+                      : "bg-muted/70 text-muted-foreground rounded-bl-none backdrop-blur-xl border border-primary/20 px-4 py-3 max-w-2xl hover:bg-muted/80 hover:border-primary/30"
                   }`}
+                  whileHover={{ y: -2 }}
                 >
                   {msg.role === "assistant" ? (
                     <div className="prose prose-sm dark:prose-invert max-w-none text-inherit">
@@ -243,52 +279,70 @@ export function AIChatDialog({ isOpen, onClose, websiteContent }: AIChatDialogPr
                   ) : (
                     <span className="text-sm">{msg.content}</span>
                   )}
-                </div>
+                </motion.div>
               </motion.div>
             ))}
 
             {loading && (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 10, x: -20 }}
+                animate={{ opacity: 1, y: 0, x: 0 }}
+                transition={{ duration: 0.3 }}
                 className="flex justify-start items-end gap-2"
               >
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                <motion.div 
+                  className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/30 flex items-center justify-center"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
                   <Sparkles className="h-3.5 w-3.5 text-primary" />
-                </div>
-                <div className="bg-muted/60 text-muted-foreground px-4 py-2.5 rounded-2xl rounded-bl-none flex items-center gap-2 backdrop-blur-sm border border-border/30">
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                </motion.div>
+                <motion.div 
+                  className="bg-muted/70 text-muted-foreground px-4 py-2.5 rounded-2xl rounded-bl-none flex items-center gap-2 backdrop-blur-xl border border-primary/20"
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <Loader2 className="h-4 w-4 animate-spin text-primary" />
                   <span className="text-sm">Thinking...</span>
-                </div>
+                </motion.div>
               </motion.div>
             )}
 
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="relative p-4 border-t border-border/30 flex gap-2 bg-background/30 backdrop-blur-sm">
-            <input
+          <div className="relative p-4 border-t border-primary/20 flex gap-2 bg-background/40 backdrop-blur-xl">
+            <motion.input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && !loading && handleSend()}
               placeholder="Ask a question..."
-              className="flex-1 px-4 py-2.5 rounded-xl bg-background/60 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent text-sm transition-all duration-200 backdrop-blur-sm"
+              className="flex-1 px-4 py-2.5 rounded-xl bg-background/60 border border-primary/30 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 text-sm transition-all duration-200 backdrop-blur-xl"
               disabled={loading}
               data-testid="input-ai-question"
+              whileFocus={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
             />
-            <Button
-              onClick={handleSend}
-              disabled={loading || !input.trim()}
-              size="sm"
-              className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:shadow-lg transition-all duration-200"
-              data-testid="button-send-ai-question"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
             >
-              <Send className="h-4 w-4" />
-            </Button>
+              <Button
+                onClick={handleSend}
+                disabled={loading || !input.trim()}
+                size="sm"
+                className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:shadow-xl hover:shadow-primary/50 transition-all duration-200"
+                data-testid="button-send-ai-question"
+              >
+                <Send className="h-4 w-4" />
+              </Button>
+            </motion.div>
           </div>
         </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
