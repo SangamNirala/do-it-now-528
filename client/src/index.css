@@ -823,7 +823,21 @@
   }
 
   .custom-cursor-glow.active {
-    @apply w-10 h-10 border-primary/100 shadow-lg shadow-primary/50;
+    @apply w-10 h-10 border-primary/100;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+  }
+
+  .dark .custom-cursor-glow.active {
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
+  }
+
+  /* Light mode cursor visibility */
+  .light .custom-cursor-glow {
+    border-color: rgba(59, 130, 246, 0.8) !important;
+  }
+
+  .light .custom-cursor-dot {
+    background-color: rgba(59, 130, 246, 0.7) !important;
   }
 
   /* Cursor Hover Areas */
