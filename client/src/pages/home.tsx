@@ -63,7 +63,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
-import { BookOpen } from "lucide-react";
 import heroBackground from "@assets/generated_images/neural_network_tech_background.png";
 import profileImage from "@assets/image_1764392269903.png";
 
@@ -1255,18 +1254,6 @@ function Navbar({ onGlossaryClick }: { onGlossaryClick: () => void }) {
 
           {/* Right Side Controls */}
           <div className="flex items-center gap-3">
-            <motion.button
-              onClick={onGlossaryClick}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer hidden sm:flex"
-              aria-label="Open glossary"
-              data-testid="button-glossary"
-              title="Technical glossary with definitions"
-            >
-              <BookOpen className="h-5 w-5" />
-            </motion.button>
-
             <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}
