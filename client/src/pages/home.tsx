@@ -39,6 +39,7 @@ import {
   Moon,
   Menu,
   X,
+  Calendar,
   type LucideIcon,
 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
@@ -354,6 +355,28 @@ const experiences = [
 ];
 
 function ExperienceSection() {
+  const [hoveredDotIndex, setHoveredDotIndex] = useState<number | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
+
+  const scrollToExperience = (index: number) => {
+    const element = document.getElementById(`experience-${index}`);
+    if (element) {
+      const navbarHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - navbarHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
+  const handleDotHover = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
+    setHoveredDotIndex(index);
+    const rect = e.currentTarget.getBoundingClientRect();
+    setTooltipPosition({
+      top: rect.top + window.scrollY - 60,
+      left: rect.left + window.scrollX,
+    });
+  };
+
   return (
     <section id="experience" className="pt-16 py-20 md:py-28 bg-card" data-testid="section-experience">
       <div className="max-w-5xl mx-auto px-6">
@@ -367,15 +390,51 @@ function ExperienceSection() {
         <div className="relative">
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent md:-translate-x-0.5" />
 
+          {/* Timeline Tooltip */}
+          <AnimatePresence>
+            {hoveredDotIndex !== null && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+                className="fixed bg-background/95 backdrop-blur-md border border-primary/30 rounded-lg p-3 shadow-xl z-50 pointer-events-none"
+                style={{
+                  top: `${tooltipPosition.top}px`,
+                  left: `${tooltipPosition.left - 80}px`,
+                  minWidth: "200px",
+                }}
+                data-testid={`tooltip-experience-${hoveredDotIndex}`}
+              >
+                <p className="font-bold text-primary text-sm">{experiences[hoveredDotIndex].company}</p>
+                <p className="text-xs text-muted-foreground">{experiences[hoveredDotIndex].role}</p>
+                <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
+                  <Calendar className="h-3 w-3" />
+                  {experiences[hoveredDotIndex].period}
+                </div>
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <MapPin className="h-3 w-3" />
+                  {experiences[hoveredDotIndex].location}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {experiences.map((exp, index) => (
-            <AnimatedSection key={index} className="relative mb-12 last:mb-0">
+            <AnimatedSection key={index} className="relative mb-12 last:mb-0" id={`experience-${index}`}>
               <div className={`flex flex-col md:flex-row gap-8 ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
                 <div className="hidden md:block md:w-1/2" />
 
-                <motion.div
-                  className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-primary to-primary/80 border-4 border-background -translate-x-1/2 z-10 shadow-lg"
+                <motion.button
+                  onClick={() => scrollToExperience(index)}
+                  onMouseEnter={(e) => handleDotHover(e as any, index)}
+                  onMouseLeave={() => setHoveredDotIndex(null)}
+                  className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-primary to-primary/80 border-4 border-background -translate-x-1/2 z-10 shadow-lg cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-xl"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                  data-testid={`timeline-dot-${index}`}
+                  type="button"
+                  aria-label={`Scroll to ${exp.company} experience`}
                 />
 
                 <Card
