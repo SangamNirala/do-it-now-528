@@ -9,6 +9,37 @@ interface AIChatDialogProps {
   websiteContent: string;
 }
 
+// Format markdown response into proper text
+function formatMessage(content: string) {
+  // Remove asterisks used for bold in markdown
+  let text = content.replace(/\*\*/g, "").replace(/\*/g, "");
+  
+  // Split by lines and process
+  const lines = text.split("\n").filter((line) => line.trim());
+  
+  return lines.map((line, idx) => {
+    const trimmedLine = line.trim();
+    
+    // Check if it's a list item (starts with - or •)
+    if (trimmedLine.startsWith("-") || trimmedLine.startsWith("•")) {
+      const itemText = trimmedLine.replace(/^[-•]\s*/, "");
+      return (
+        <div key={idx} className="flex gap-2 mb-2">
+          <span className="text-primary font-semibold mt-1">•</span>
+          <span>{itemText}</span>
+        </div>
+      );
+    }
+    
+    // Regular paragraph
+    return trimmedLine ? (
+      <p key={idx} className="mb-2">
+        {trimmedLine}
+      </p>
+    ) : null;
+  });
+}
+
 export function AIChatDialog({ isOpen, onClose, websiteContent }: AIChatDialogProps) {
   const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
   const [input, setInput] = useState("");
@@ -117,13 +148,13 @@ export function AIChatDialog({ isOpen, onClose, websiteContent }: AIChatDialogPr
                   </div>
                 )}
                 <div
-                  className={`max-w-xs px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                  className={`max-w-md px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
                     msg.role === "user"
                       ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-br-none shadow-lg"
                       : "bg-muted/60 text-muted-foreground rounded-bl-none backdrop-blur-sm border border-border/30"
                   }`}
                 >
-                  {msg.content}
+                  {msg.role === "assistant" ? formatMessage(msg.content) : msg.content}
                 </div>
               </motion.div>
             ))}
