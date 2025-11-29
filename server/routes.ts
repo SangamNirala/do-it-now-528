@@ -43,18 +43,22 @@ USER QUESTION: ${question}
 Please provide a helpful, accurate answer based on the information provided above. Keep your response concise and relevant.`;
 
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/text-bison-001:generateText?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            prompt: {
-              text: prompt,
-            },
-            temperature: 0.7,
-            candidateCount: 1,
+            contents: [
+              {
+                parts: [
+                  {
+                    text: prompt,
+                  },
+                ],
+              },
+            ],
           }),
         }
       );
@@ -62,16 +66,12 @@ Please provide a helpful, accurate answer based on the information provided abov
       if (!response.ok) {
         const error = await response.text();
         console.error("Gemini API error:", error);
-        
-        // Fallback: If API key doesn't work, provide a helpful response based on context
-        const contextMatch = context.match(/(?:EXPERIENCE|PROJECTS|SKILLS|EDUCATION)([\s\S]*?)(?=\n[A-Z]+:|$)/g);
-        const answer = `I'm having trouble connecting to the AI service right now. However, based on Sangam's portfolio: Sangam is an ML Engineer with experience at Zenbourg and Sakura Biotech, specializing in computer vision (Face Detection System with 96.5% accuracy) and RAG-based AI systems (PDF Chatbot with 92.4% accuracy). He's proficient in Python, TensorFlow, PyTorch, and has skills in MLOps, Docker, and cloud deployment. Feel free to ask more specific questions!`;
-        return res.json({ answer });
+        return res.status(500).json({ error: "Failed to get response from AI" });
       }
 
       const data = await response.json();
       const answer =
-        data.candidates?.[0]?.output ||
+        data.candidates?.[0]?.content?.parts?.[0]?.text ||
         "Sorry, I couldn't generate a response. Please try again.";
 
       res.json({ answer });
