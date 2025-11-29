@@ -66,7 +66,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import heroBackground from "@assets/generated_images/neural_network_tech_background.png";
-import profileImage from "@assets/image_1764392269903.png";
+import profileImage from "@assets/image_1764403838014.png";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
