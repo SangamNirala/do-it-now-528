@@ -8,7 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, CheckCircle2, AlertCircle, MessageCircle, Linkedin, Github, MessageSquare } from "lucide-react";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -18,6 +18,12 @@ const contactFormSchema = z.object({
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
+
+const directMessageOptions = [
+  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/sangamnirala", color: "from-blue-600 to-blue-700", testid: "dm-linkedin" },
+  { icon: Github, label: "GitHub", href: "https://github.com/sangamnirala", color: "from-gray-700 to-gray-800", testid: "dm-github" },
+  { icon: MessageSquare, label: "WhatsApp", href: "https://wa.me/919987937919", color: "from-green-500 to-green-600", testid: "dm-whatsapp" },
+];
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -67,35 +73,75 @@ export function ContactForm() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-card border border-border rounded-lg p-8 backdrop-blur-sm cursor-pointer"
+      className="bg-gradient-to-br from-card to-card/50 border border-border/50 rounded-xl p-8 backdrop-blur-sm cursor-pointer shadow-lg"
       data-testid="contact-form"
     >
-      <div className="mb-6 flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-primary/10">
-          <Mail className="h-5 w-5 text-primary" />
+      <div className="mb-8 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <motion.div 
+            className="p-3 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10"
+            animate={{ rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+          >
+            <Mail className="h-6 w-6 text-primary" />
+          </motion.div>
+          <div>
+            <h3 className="text-2xl font-bold text-foreground">Get in Touch</h3>
+            <p className="text-sm text-muted-foreground">I typically respond within 24 hours</p>
+          </div>
         </div>
-        <h3 className="text-2xl font-bold text-foreground">Send Me a Message</h3>
       </div>
 
       {submitSuccess ? (
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
           className="text-center py-12"
         >
           <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 flex justify-center"
+            animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="mb-6 flex justify-center"
           >
-            <CheckCircle2 className="h-16 w-16 text-green-500" />
+            <div className="relative">
+              <motion.div
+                animate={{ scale: [1, 1.5, 0.8, 1] }}
+                transition={{ duration: 1.2, ease: "easeInOut" }}
+                className="absolute inset-0 bg-green-500/20 rounded-full blur-lg"
+              />
+              <CheckCircle2 className="h-20 w-20 text-green-500 relative z-10" />
+            </div>
           </motion.div>
-          <h4 className="text-xl font-semibold text-foreground mb-2">Message Sent!</h4>
-          <p className="text-muted-foreground">I'll get back to you within 24 hours.</p>
+          <motion.h4 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-2xl font-bold text-foreground mb-2"
+          >
+            Message Sent!
+          </motion.h4>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-muted-foreground mb-6"
+          >
+            I'll get back to you within 24 hours.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-sm text-primary font-medium"
+          >
+            ✓ Thank you for reaching out!
+          </motion.div>
         </motion.div>
       ) : (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mb-6">
             <div className="grid md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -181,13 +227,52 @@ export function ContactForm() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold min-h-12"
+              className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold min-h-12 transition-all duration-300"
               data-testid="button-submit-form"
             >
-              {isSubmitting ? "Sending..." : "Send Message"}
+              {isSubmitting ? (
+                <motion.span className="flex items-center gap-2">
+                  <motion.span
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  >
+                    ⏳
+                  </motion.span>
+                  Sending...
+                </motion.span>
+              ) : (
+                "Send Message"
+              )}
             </Button>
           </form>
         </Form>
+
+        {/* Direct Message Options */}
+        <div className="mt-8 pt-6 border-t border-border/50">
+          <p className="text-sm text-muted-foreground text-center mb-4 font-medium">Or reach out directly:</p>
+          <div className="grid grid-cols-3 gap-3">
+            {directMessageOptions.map((option, index) => (
+              <motion.a
+                key={index}
+                href={option.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className={`py-3 px-4 rounded-lg bg-gradient-to-br ${option.color} text-white font-semibold text-sm flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-300`}
+                data-testid={option.testid}
+                aria-label={`Direct message via ${option.label}`}
+              >
+                <option.icon className="h-4 w-4" />
+                <span className="hidden sm:inline">{option.label}</span>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+        </>
       )}
     </motion.div>
   );
