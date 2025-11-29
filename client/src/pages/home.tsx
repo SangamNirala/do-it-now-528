@@ -306,7 +306,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 w-full"
+            className="button-group flex flex-col sm:flex-row items-center justify-center mb-8 w-full"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -319,7 +319,13 @@ function HeroSection() {
                 data-testid="button-view-projects"
               >
                 View Projects
-                <ExternalLink className="ml-2 h-5 w-5" />
+                <motion.span
+                  whileHover={{ scale: 1.3, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  className="inline-block ml-2"
+                >
+                  <ExternalLink className="h-5 w-5" />
+                </motion.span>
               </Button>
             </motion.div>
             <motion.div
@@ -333,7 +339,13 @@ function HeroSection() {
                 data-testid="button-download-resume"
               >
                 Download Resume
-                <Download className="ml-2 h-5 w-5" />
+                <motion.span
+                  whileHover={{ scale: 1.3, rotate: -10 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  className="inline-block ml-2"
+                >
+                  <Download className="h-5 w-5" />
+                </motion.span>
               </Button>
             </motion.div>
           </motion.div>
@@ -344,42 +356,58 @@ function HeroSection() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="flex items-center justify-center gap-6"
           >
-            <a
+            <motion.a
               href="https://linkedin.com/in/sangamnirala"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
+              className="text-white/70 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               aria-label="LinkedIn Profile"
               data-testid="link-linkedin"
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <Linkedin className="h-6 w-6" />
-            </a>
-            <a
+              <motion.span whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
+                <Linkedin className="h-6 w-6" />
+              </motion.span>
+            </motion.a>
+            <motion.a
               href="https://github.com/sangamnirala"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
+              className="text-white/70 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               aria-label="GitHub Profile"
               data-testid="link-github"
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <Github className="h-6 w-6" />
-            </a>
-            <a
+              <motion.span whileHover={{ rotate: -360 }} transition={{ duration: 0.5 }}>
+                <Github className="h-6 w-6" />
+              </motion.span>
+            </motion.a>
+            <motion.a
               href="mailto:srnirala_b22@et.vjti.ac.in"
-              className="text-white/70 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
+              className="text-white/70 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               aria-label="Email"
               data-testid="link-email"
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <Mail className="h-6 w-6" />
-            </a>
-            <a
+              <motion.span whileHover={{ scale: 1.2 }} transition={{ type: "spring", stiffness: 400 }}>
+                <Mail className="h-6 w-6" />
+              </motion.span>
+            </motion.a>
+            <motion.a
               href="tel:+919987937919"
-              className="text-white/70 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
+              className="text-white/70 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               aria-label="Phone"
               data-testid="link-phone"
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <Phone className="h-6 w-6" />
-            </a>
+              <motion.span whileHover={{ rotate: 10 }} transition={{ type: "spring", stiffness: 400 }}>
+                <Phone className="h-6 w-6" />
+              </motion.span>
+            </motion.a>
           </motion.div>
         </motion.div>
 
