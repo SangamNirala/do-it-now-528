@@ -2,9 +2,10 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code2, Brain, Rocket, Zap } from "lucide-react";
+import { Code2, Brain, Rocket, Zap, Github, ExternalLink } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { useInView } from "framer-motion";
+import { StaggerList } from "@/components/animations/stagger-list";
 
 const projects = [
   {
@@ -127,7 +128,7 @@ export function ProjectsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="project-card card-depth-3 h-full p-0 overflow-hidden group transition-all duration-300 transform hover:scale-105 rounded-lg"
+                className="project-card card-depth-3 h-full p-0 overflow-hidden group transition-all duration-300 transform hover:scale-105 rounded-lg card-3d-hover hover-depth"
                 data-testid={`card-project-${index}`}
               >
                 <div className={`aspect-video rounded-t-lg bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
