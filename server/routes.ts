@@ -1,16 +1,23 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import path from "path";
+import fs from "fs";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // put application routes here
-  // prefix all routes with /api
-
-  // use storage to perform CRUD operations on the storage interface
-  // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
+  app.get("/api/resume", (req, res) => {
+    const resumePath = path.join(process.cwd(), "attached_assets", "Sangam Nirala2_1764390677895.pdf");
+    
+    if (fs.existsSync(resumePath)) {
+      res.setHeader("Content-Type", "application/pdf");
+      res.setHeader("Content-Disposition", 'attachment; filename="Sangam_Nirala_Resume.pdf"');
+      fs.createReadStream(resumePath).pipe(res);
+    } else {
+      res.status(404).json({ error: "Resume not found" });
+    }
+  });
 
   return httpServer;
 }
