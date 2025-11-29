@@ -291,7 +291,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent tracking-tight mb-4"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent tracking-tight mb-4 line-clamp-2 sm:line-clamp-none"
             data-testid="text-hero-name"
             style={{ willChange: "transform, opacity" }}
           >
@@ -302,7 +302,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-xl md:text-2xl text-blue-200 font-medium mb-6"
+            className="text-lg sm:text-xl md:text-2xl text-blue-200 font-medium mb-6 break-words"
             data-testid="text-hero-title"
             style={{ willChange: "transform, opacity" }}
           >
@@ -313,12 +313,11 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed px-2 break-words"
             data-testid="text-hero-summary"
             style={{ willChange: "transform, opacity" }}
           >
-            Building production-ready ML systems with expertise in MLOps, deep learning, and cloud deployment.
-            Passionate about end-to-end pipeline automation and scalable model deployment.
+            Building production-ready ML systems with expertise in MLOps, deep learning, and cloud deployment. Passionate about end-to-end pipeline automation and scalable model deployment.
           </motion.p>
 
           <motion.div
@@ -1292,9 +1291,9 @@ function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => void; o
             {/* Mobile Hamburger Button */}
             <motion.button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="md:hidden relative p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+              className="md:hidden relative p-2.5 rounded-lg text-muted-foreground hover:text-foreground bg-primary/5 hover:bg-primary/15 transition-all duration-300 cursor-pointer border border-primary/20 hover:border-primary/40"
               aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
               data-testid="button-hamburger"
               aria-expanded={mobileMenuOpen}
@@ -1305,9 +1304,9 @@ function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => void; o
                 transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
               >
                 {mobileMenuOpen ? (
-                  <X className="h-5 w-5" />
+                  <X className="h-6 w-6" />
                 ) : (
-                  <Menu className="h-5 w-5" />
+                  <Menu className="h-6 w-6" />
                 )}
               </motion.div>
             </motion.button>
@@ -1333,21 +1332,25 @@ function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => void; o
           opacity: mobileMenuOpen ? 1 : 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="md:hidden overflow-hidden border-t border-border relative z-50 cursor-pointer"
+        className="md:hidden overflow-hidden border-t border-primary/30 relative z-50 cursor-pointer bg-gradient-to-b from-card to-background/95"
         id="mobile-menu"
         role="navigation"
         aria-label="Mobile navigation"
       >
-        <div className="px-6 py-4 space-y-2 bg-background/95 backdrop-blur-lg" role="menubar">
+        <div className="px-4 py-3 space-y-1 backdrop-blur-lg" role="menubar">
           {navItems.map((item) => (
-            <button
+            <motion.button
               key={item}
               type="button"
-              onClick={() => scrollToSection(item.toLowerCase())}
-              className={`block w-full text-left py-3 px-4 rounded-lg font-medium transition-all duration-300 cursor-pointer hover-elevate ${
+              onClick={() => {
+                scrollToSection(item.toLowerCase());
+                setMobileMenuOpen(false);
+              }}
+              whileHover={{ x: 4 }}
+              className={`block w-full text-left py-3 px-4 rounded-lg font-medium transition-all duration-300 cursor-pointer text-base sm:text-lg ${
                 activeSection === item.toLowerCase()
-                  ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
+                  ? "text-primary bg-primary/15 border border-primary/30 font-semibold"
+                  : "text-muted-foreground hover:text-foreground hover:bg-primary/10 hover:border hover:border-primary/20"
               }`}
               data-testid={`nav-link-mobile-${item.toLowerCase()}`}
               role="menuitem"
@@ -1355,7 +1358,7 @@ function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => void; o
               aria-label={`Navigate to ${item}`}
             >
               {item}
-            </button>
+            </motion.button>
           ))}
         </div>
       </motion.div>
@@ -1369,7 +1372,7 @@ function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => void; o
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 bg-black/20 md:hidden pointer-events-auto"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm md:hidden pointer-events-auto"
             style={{ top: "auto", bottom: 0, zIndex: 30, willChange: "opacity" }}
             data-testid="mobile-menu-backdrop"
           />
