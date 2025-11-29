@@ -26,7 +26,8 @@ export function CustomCursor() {
         target.classList.contains("cursor-glow") ||
         target.closest("button") ||
         target.closest("a") ||
-        target.closest("input");
+        target.closest("input") ||
+        target.closest("[data-testid='ai-chat-dialog']");
 
       if (cursorRef.current) {
         if (isInteractive) {
