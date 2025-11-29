@@ -43,6 +43,10 @@ import {
   Menu,
   X,
   Calendar,
+  CheckCircle,
+  Lightbulb,
+  Target,
+  Flame,
   type LucideIcon,
 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
@@ -510,7 +514,10 @@ function ExperienceSection() {
         </AnimatedSection>
 
         <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent md:-translate-x-0.5" />
+          <motion.div 
+            className="timeline-line absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-0.5"
+            style={{ willChange: "background-position" }}
+          />
 
           {/* Timeline Tooltip */}
           <AnimatePresence>
@@ -552,12 +559,13 @@ function ExperienceSection() {
                   onClick={() => scrollToExperience(index)}
                   onMouseEnter={(e) => handleDotHover(e as any, index)}
                   onMouseLeave={() => setHoveredDotIndex(null)}
-                  className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-primary to-primary/80 border-4 border-background -translate-x-1/2 z-10 shadow-lg cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-xl"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                  className="timeline-node absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-primary via-blue-400 to-primary border-4 border-background -translate-x-1/2 z-10 cursor-pointer transition-all duration-300 hover:scale-150 hover:shadow-2xl"
+                  animate={{ scale: [1, 1.15, 1] }}
+                  transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.3 }}
                   data-testid={`timeline-dot-${index}`}
                   type="button"
                   aria-label={`Scroll to ${exp.company} experience`}
+                  style={{ willChange: "transform" }}
                 />
 
                 <Card
@@ -567,15 +575,18 @@ function ExperienceSection() {
                   data-testid={`card-experience-${index}`}
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${exp.logoColor} flex items-center justify-center shrink-0 shadow-lg`}>
+                    <motion.div 
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className={`company-logo company-logo-glow w-16 h-16 rounded-full bg-gradient-to-br ${exp.logoColor} flex items-center justify-center shrink-0 shadow-lg transition-all duration-300`}
+                    >
                       <span className="text-xl font-bold text-white">{exp.logoInitials}</span>
-                    </div>
+                    </motion.div>
                     <div className="flex-1 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                       <div>
-                        <h3 className="text-xl font-semibold text-foreground" data-testid={`text-company-${index}`}>
+                        <h3 className="text-2xl font-bold text-foreground bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent" data-testid={`text-company-${index}`}>
                           {exp.company}
                         </h3>
-                        <p className="text-primary font-medium">{exp.role}</p>
+                        <p className="text-lg text-primary font-bold tracking-tight mt-1">{exp.role}</p>
                       </div>
                       <div className="sm:text-right">
                         <p className="text-sm text-muted-foreground">{exp.period}</p>
@@ -587,13 +598,23 @@ function ExperienceSection() {
                     </div>
                   </div>
 
-                  <ul className="space-y-2 mb-4">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="text-sm text-muted-foreground flex gap-2">
-                        <span className="text-primary mt-1.5 shrink-0">•</span>
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
+                  <ul className="space-y-3 mb-4">
+                    {exp.achievements.map((achievement, i) => {
+                      const icons = [CheckCircle, Lightbulb, Target];
+                      const Icon = icons[i % icons.length];
+                      return (
+                        <motion.li 
+                          key={i} 
+                          className="text-sm text-muted-foreground flex gap-3 items-start"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                        >
+                          <Icon className="h-5 w-5 text-primary shrink-0 mt-0.5 flex-shrink-0" />
+                          <span className="leading-relaxed">{achievement}</span>
+                        </motion.li>
+                      );
+                    })}
                   </ul>
 
                   <div className="flex flex-wrap gap-2">

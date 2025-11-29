@@ -414,6 +414,66 @@
     @apply bg-purple-500/20 text-purple-300 border border-purple-400/50;
   }
 
+  /* Timeline Node Glow Effect */
+  @keyframes timeline-node-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7), inset 0 0 0 2px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px 10px rgba(59, 130, 246, 0.3), inset 0 0 0 2px rgba(59, 130, 246, 0.8);
+    }
+  }
+
+  .timeline-node {
+    animation: timeline-node-glow 2s ease-in-out infinite;
+  }
+
+  /* Timeline Line Animation */
+  @keyframes timeline-line-flow {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 20px;
+    }
+  }
+
+  .timeline-line {
+    background: linear-gradient(to bottom, hsl(217 91% 60%), hsl(217 91% 60%), transparent);
+    background-size: 2px 20px;
+    animation: timeline-line-flow 3s linear infinite;
+  }
+
+  /* Company Logo Hover Effects */
+  .company-logo {
+    @apply transition-all duration-300 hover:scale-110 hover:shadow-2xl;
+  }
+
+  .company-logo-glow {
+    position: relative;
+  }
+
+  .company-logo-glow::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .company-logo-glow:hover::before {
+    opacity: 0.3;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+
+  /* Achievement Badge */
+  .achievement-badge {
+    @apply inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-primary/15 text-primary text-xs font-medium;
+  }
+
   /* Smooth transitions */
   * {
     @apply transition-colors duration-300;
