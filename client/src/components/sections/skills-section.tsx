@@ -58,7 +58,7 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="pt-16 spacing-section-lg bg-card section-pattern-subtle relative contain-strict" data-testid="section-skills" role="region" aria-label="Technical skills section">
+    <section id="skills" className="pt-16 spacing-section-lg bg-card section-pattern-subtle relative" data-testid="section-skills" role="region" aria-label="Technical skills section">
       <div className="content-max-width mx-auto section-spacing-horizontal">
         <AnimatedSection>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12 text-center">Technical Skills</h2>
@@ -79,7 +79,7 @@ export function SkillsSection() {
 
             return (
               <AnimatedSection key={tier}>
-                <Card className="card-depth-2 p-6 h-full transition-all duration-300 transform hover:scale-105 cursor-pointer" data-testid={`card-skill-tier-${tierIndex}`}>
+                <Card className="card-depth-2 p-6 transition-all duration-300 transform hover:scale-105 cursor-pointer" data-testid={`card-skill-tier-${tierIndex}`}>
                   <div className="flex items-center gap-3 mb-4">
                     <div className={`p-3 rounded-lg bg-gradient-to-br ${tierColors[tier as keyof typeof tierColors]}`}>
                       <span className="text-sm font-bold text-white">{tier}</span>
