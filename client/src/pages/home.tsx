@@ -290,7 +290,7 @@ function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-background" data-testid="section-about">
+    <section id="about" className="pt-16 py-20 md:py-28 bg-background" data-testid="section-about">
       <div className="max-w-4xl mx-auto px-6">
         <AnimatedSection>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-center">Impact-Driven ML Engineer</h2>
@@ -355,7 +355,7 @@ const experiences = [
 
 function ExperienceSection() {
   return (
-    <section id="experience" className="py-20 md:py-28 bg-card" data-testid="section-experience">
+    <section id="experience" className="pt-16 py-20 md:py-28 bg-card" data-testid="section-experience">
       <div className="max-w-5xl mx-auto px-6">
         <AnimatedSection>
           <div className="flex items-center justify-center gap-3 mb-12">
@@ -474,7 +474,7 @@ const projects = [
 
 function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 md:py-28 bg-background" data-testid="section-projects">
+    <section id="projects" className="pt-16 py-20 md:py-28 bg-background" data-testid="section-projects">
       <div className="max-w-6xl mx-auto px-6">
         <AnimatedSection>
           <div className="flex items-center justify-center gap-3 mb-12">
@@ -650,7 +650,7 @@ function StatsSection() {
 
 function SkillsSection() {
   return (
-    <section id="skills" className="py-20 md:py-28 bg-card" data-testid="section-skills">
+    <section id="skills" className="pt-16 py-20 md:py-28 bg-card" data-testid="section-skills">
       <div className="max-w-6xl mx-auto px-6">
         <AnimatedSection>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12 text-center">Technical Skills</h2>
@@ -708,7 +708,7 @@ function SkillsSection() {
 
 function EducationSection() {
   return (
-    <section id="education" className="py-20 md:py-28 bg-background" data-testid="section-education">
+    <section id="education" className="pt-16 py-20 md:py-28 bg-background" data-testid="section-education">
       <div className="max-w-4xl mx-auto px-6">
         <AnimatedSection>
           <div className="flex items-center justify-center gap-3 mb-12">
