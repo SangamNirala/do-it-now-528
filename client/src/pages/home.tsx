@@ -1215,12 +1215,12 @@ function Navbar() {
   const navItems = ["About", "Experience", "Projects", "Skills", "Education"];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border" data-testid="navbar">
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border cursor-pointer" data-testid="navbar">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between gap-4">
           <button
             onClick={() => scrollToSection("home")}
-            className="text-lg font-bold text-foreground hover:text-primary transition-colors"
+            className="text-lg font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
             data-testid="nav-logo"
           >
             SN
@@ -1232,7 +1232,7 @@ function Navbar() {
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
-                className={`text-sm font-medium transition-all duration-300 ${
+                className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
                   activeSection === item.toLowerCase() ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground hover:text-foreground"
                 }`}
                 data-testid={`nav-link-${item.toLowerCase()}`}
@@ -1248,7 +1248,7 @@ function Navbar() {
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="relative p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10"
+              className="relative p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer"
               aria-label="Toggle theme"
               data-testid="button-theme-toggle"
             >
@@ -1270,7 +1270,7 @@ function Navbar() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="md:hidden relative p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10"
+              className="md:hidden relative p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer"
               aria-label="Toggle mobile menu"
               data-testid="button-hamburger"
             >
@@ -1307,7 +1307,7 @@ function Navbar() {
           opacity: mobileMenuOpen ? 1 : 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="md:hidden overflow-hidden border-t border-border relative z-50"
+        className="md:hidden overflow-hidden border-t border-border relative z-50 cursor-pointer"
       >
         <div className="px-6 py-4 space-y-2 bg-background/95 backdrop-blur-lg">
           {navItems.map((item) => (
