@@ -1,4 +1,6 @@
-import { useRef, useState, useEffect, lazy, Suspense } from "react";
+import { useRef, useState, useEffect, lazy, Suspense, ReactNode } from "react";
+const ProjectsSection = lazy(() => import("@/components/sections/projects-section").then(m => ({ default: m.ProjectsSection })));
+const SkillsSection = lazy(() => import("@/components/sections/skills-section").then(m => ({ default: m.SkillsSection })));
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -108,6 +110,7 @@ function FloatingContactWidget() {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.2 }}
             className="absolute bottom-20 right-0 space-y-3 mb-2"
+            style={{ willChange: "transform, opacity" }}
           >
             {contactMethods.map((method, index) => (
               <motion.a
@@ -121,6 +124,7 @@ function FloatingContactWidget() {
                 whileHover={{ scale: 1.1 }}
                 className={`flex items-center justify-between gap-3 px-4 py-2.5 rounded-full bg-gradient-to-r ${method.color} text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap`}
                 data-testid={method.testid}
+                style={{ willChange: "transform" }}
               >
                 <method.icon className="h-4 w-4" />
                 {method.label}
@@ -137,10 +141,12 @@ function FloatingContactWidget() {
         className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center cursor-pointer"
         aria-label="Open contact options"
         data-testid="button-floating-contact"
+        style={{ willChange: "transform" }}
       >
         <motion.div
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.3 }}
+          style={{ willChange: "transform" }}
         >
           <Mail className="h-6 w-6" />
         </motion.div>
@@ -178,6 +184,7 @@ function BackToTopButton() {
       className="fixed bottom-8 left-8 z-40 p-3 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-shadow duration-300"
       aria-label="Back to top"
       data-testid="button-back-to-top"
+      style={{ willChange: "transform, opacity" }}
     >
       <ArrowUp className="h-5 w-5" />
     </motion.button>
@@ -207,6 +214,7 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 md:p-12 shadow-2xl"
+          style={{ willChange: "transform, opacity" }}
         >
           {/* Profile Picture with Glow */}
           <motion.div
@@ -214,6 +222,7 @@ function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mb-6 flex justify-center"
+            style={{ willChange: "transform, opacity" }}
           >
             <div className="relative w-32 h-32 md:w-40 md:h-40">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-75 blur-lg animate-pulse" />
@@ -229,6 +238,7 @@ function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight mb-4"
             data-testid="text-hero-name"
+            style={{ willChange: "transform, opacity" }}
           >
             Sangam Nirala
           </motion.h1>
@@ -239,6 +249,7 @@ function HeroSection() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-xl md:text-2xl text-blue-200 font-medium mb-6"
             data-testid="text-hero-title"
+            style={{ willChange: "transform, opacity" }}
           >
             Machine Learning Engineer
           </motion.p>
@@ -249,6 +260,7 @@ function HeroSection() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed"
             data-testid="text-hero-summary"
+            style={{ willChange: "transform, opacity" }}
           >
             Building production-ready ML systems with expertise in MLOps, deep learning, and cloud deployment.
             Passionate about end-to-end pipeline automation and scalable model deployment.
