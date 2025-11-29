@@ -421,8 +421,9 @@ function ExperienceSection() {
           </AnimatePresence>
 
           {experiences.map((exp, index) => (
-            <AnimatedSection key={index} className="relative mb-12 last:mb-0" id={`experience-${index}`}>
-              <div className={`flex flex-col md:flex-row gap-8 ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
+            <div key={index} id={`experience-${index}`}>
+              <AnimatedSection className="relative mb-12 last:mb-0">
+                <div className={`flex flex-col md:flex-row gap-8 ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
                 <div className="hidden md:block md:w-1/2" />
 
                 <motion.button
@@ -482,7 +483,8 @@ function ExperienceSection() {
                   </div>
                 </Card>
               </div>
-            </AnimatedSection>
+              </AnimatedSection>
+            </div>
           ))}
         </div>
       </div>
