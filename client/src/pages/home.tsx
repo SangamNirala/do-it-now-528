@@ -626,11 +626,10 @@ function StatsSection() {
 }
 
 function StatCard({ stat, index, shouldAnimate }: { stat: any; index: number; shouldAnimate: boolean }) {
-  const count = useCounter(stat.value, 2000, shouldAnimate);
+  const count = useCounter(stat.value, 1800, shouldAnimate);
 
   return (
     <motion.div
-      key={index}
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}

@@ -1,24 +1,37 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
-export function useCounter(target: number, duration: number = 2000, shouldStart: boolean = true) {
-  const [count, setCount] = useState(0);
-  const countRef = useRef(0);
+export function useCounter(
+  target: number,
+  duration: number = 2000,
+  shouldStart: boolean = true
+) {
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
-    if (!shouldStart) return;
+    if (!shouldStart || target === 0) return;
 
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      countRef.current += increment;
-      if (countRef.current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(countRef.current));
+    let currentValue = 0;
+    const incrementPerFrame = target / (duration / 16);
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const newValue = Math.floor(target * progress);
+
+      if (newValue !== currentValue) {
+        currentValue = newValue;
+        setCount(newValue);
       }
-    }, 16);
 
-    return () => clearInterval(timer);
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    requestAnimationFrame(animate);
   }, [target, duration, shouldStart]);
 
   return count;
