@@ -654,6 +654,36 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   }
 
+  /* SECTION 13: ADVANCED CONTACT & ENGAGEMENT */
+  
+  /* Contact Form Styling */
+  .form-input {
+    @apply bg-background border-border focus:border-primary transition-colors;
+  }
+
+  .form-label {
+    @apply text-foreground font-medium;
+  }
+
+  /* Testimonial Cards */
+  .testimonial-card {
+    @apply transition-all duration-300 hover:shadow-lg;
+  }
+
+  /* Social Proof Animations */
+  @keyframes float-up {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .social-proof-card {
+    animation: float-up 3s ease-in-out infinite;
+  }
+
   /* SECTION 12: LOADING & PERFORMANCE */
 
   /* Skeleton Loading States */

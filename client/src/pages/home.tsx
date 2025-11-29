@@ -2,6 +2,9 @@ import { useRef, useState, useEffect, lazy, Suspense, ReactNode } from "react";
 const ProjectsSection = lazy(() => import("@/components/sections/projects-section").then(m => ({ default: m.ProjectsSection })));
 const SkillsSection = lazy(() => import("@/components/sections/skills-section").then(m => ({ default: m.SkillsSection })));
 import { ProjectsSectionSkeleton, SkillsSectionSkeleton } from "@/components/skeleton-loader";
+import { ContactForm } from "@/components/contact-form";
+import { TestimonialsSection } from "@/components/testimonials-section";
+import { SocialProofCards } from "@/components/social-proof";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useCounter } from "@/hooks/use-counter";
 import { Button } from "@/components/ui/button";
@@ -921,9 +924,10 @@ function CTASection() {
     <section className="py-24 md:py-32 bg-gradient-to-b from-background via-primary/5 to-background relative overflow-hidden" data-testid="section-cta">
       <div className="section-divider" />
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* Header */}
         <AnimatedSection>
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               Let's Work Together
             </h2>
@@ -934,7 +938,11 @@ function CTASection() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection>
+        {/* Social Proof */}
+        <SocialProofCards />
+
+        {/* Contact Options */}
+        <AnimatedSection className="mt-16">
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             {contactOptions.map((option, index) => (
               <motion.a
@@ -961,6 +969,12 @@ function CTASection() {
           </div>
         </AnimatedSection>
 
+        {/* Contact Form */}
+        <AnimatedSection className="mb-12">
+          <ContactForm />
+        </AnimatedSection>
+
+        {/* CTA Buttons */}
         <AnimatedSection>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.a
@@ -970,7 +984,7 @@ function CTASection() {
               className="px-8 py-3 rounded-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-semibold text-center hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg"
               data-testid="cta-button-email"
             >
-              Send Me an Email
+              Email Me
             </motion.a>
             <motion.a
               href="https://linkedin.com/in/sangamnirala"
@@ -1349,6 +1363,7 @@ export default function Home() {
         </Suspense>
         <EducationSection />
         <HonorsSection />
+        <TestimonialsSection />
         <CTASection />
       </main>
       <Footer />
