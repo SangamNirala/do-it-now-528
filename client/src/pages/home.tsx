@@ -1048,18 +1048,15 @@ function Navbar() {
           opacity: mobileMenuOpen ? 1 : 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="md:hidden overflow-hidden border-t border-border pointer-events-none"
-        style={{ pointerEvents: mobileMenuOpen ? "auto" : "none" }}
+        className="md:hidden overflow-hidden border-t border-border relative z-50"
       >
-        <div className="px-6 py-4 space-y-2 bg-background/95 backdrop-blur-lg pointer-events-auto">
+        <div className="px-6 py-4 space-y-2 bg-background/95 backdrop-blur-lg">
           {navItems.map((item) => (
-            <motion.button
+            <button
               key={item}
               type="button"
               onClick={() => scrollToSection(item.toLowerCase())}
-              whileHover={{ x: 8 }}
-              transition={{ duration: 0.2 }}
-              className={`block w-full text-left py-3 px-4 rounded-lg font-medium transition-all duration-300 cursor-pointer ${
+              className={`block w-full text-left py-3 px-4 rounded-lg font-medium transition-all duration-300 cursor-pointer hover-elevate ${
                 activeSection === item.toLowerCase()
                   ? "text-primary bg-primary/10"
                   : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
@@ -1067,7 +1064,7 @@ function Navbar() {
               data-testid={`nav-link-mobile-${item.toLowerCase()}`}
             >
               {item}
-            </motion.button>
+            </button>
           ))}
         </div>
       </motion.div>
@@ -1081,8 +1078,8 @@ function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 bg-black/20 md:hidden"
-            style={{ top: "60px", zIndex: 30 }}
+            className="fixed bottom-0 left-0 right-0 bg-black/20 md:hidden pointer-events-auto"
+            style={{ top: "120px", zIndex: 30 }}
             data-testid="mobile-menu-backdrop"
           />
         )}
