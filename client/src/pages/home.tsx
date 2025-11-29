@@ -252,7 +252,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight mb-4"
+            className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent tracking-tight mb-4"
             data-testid="text-hero-name"
             style={{ willChange: "transform, opacity" }}
           >
@@ -593,10 +593,14 @@ function StatsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-gradient-to-b from-background to-card" data-testid="section-stats">
+    <section ref={ref} className="py-20 md:py-28 bg-gradient-to-b from-background via-background to-card relative" data-testid="section-stats">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
       <div className="max-w-6xl mx-auto px-6">
         <AnimatedSection>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12 text-center">Quick Stats</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">Quick Stats</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-pink-500 mx-auto rounded-full"></div>
+          </div>
         </AnimatedSection>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
