@@ -18,6 +18,10 @@ export function CustomCursor() {
       cursorDotRef.current.style.left = `${e.clientX}px`;
       cursorDotRef.current.style.top = `${e.clientY}px`;
 
+      // Make cursor always visible
+      cursorRef.current.style.opacity = "1";
+      cursorDotRef.current.style.opacity = "1";
+
       // Check if hovering over interactive element
       const target = e.target as HTMLElement;
       const isInputField = target.tagName === "INPUT" || target.closest("input");
@@ -33,8 +37,10 @@ export function CustomCursor() {
         // Only add active class if interactive but NOT an input field
         if (isInteractive && !isInputField) {
           cursorRef.current.classList.add("active");
+          cursorDotRef.current.classList.add("active");
         } else {
           cursorRef.current.classList.remove("active");
+          cursorDotRef.current.classList.remove("active");
         }
       }
     };
