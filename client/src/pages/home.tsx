@@ -228,7 +228,7 @@ function HeroSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 page-section cursor-pointer" id="home" data-testid="section-hero">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 page-section cursor-pointer" id="home" data-testid="section-hero" aria-label="Hero section - Introduction">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-bg"
         style={{ 
@@ -331,12 +331,14 @@ function HeroSection() {
                 onClick={scrollToProjects}
                 className="w-full sm:w-auto glass-button-primary px-6 sm:px-8 py-4 sm:py-6 rounded-lg font-semibold text-white min-h-12 sm:min-h-9"
                 data-testid="button-view-projects"
+                aria-label="View my featured projects"
               >
                 View Projects
                 <motion.span
                   whileHover={{ scale: 1.3, rotate: 10 }}
                   transition={{ type: "spring", stiffness: 400 }}
                   className="inline-block ml-2"
+                  aria-hidden="true"
                 >
                   <ExternalLink className="h-5 w-5" />
                 </motion.span>
@@ -351,12 +353,14 @@ function HeroSection() {
                 onClick={downloadResume}
                 className="w-full sm:w-auto glass-button px-6 sm:px-8 py-4 sm:py-6 rounded-lg font-semibold text-white min-h-12 sm:min-h-9"
                 data-testid="button-download-resume"
+                aria-label="Download my resume in PDF format"
               >
                 Download Resume
                 <motion.span
                   whileHover={{ scale: 1.3, rotate: -10 }}
                   transition={{ type: "spring", stiffness: 400 }}
                   className="inline-block ml-2"
+                  aria-hidden="true"
                 >
                   <Download className="h-5 w-5" />
                 </motion.span>
@@ -1215,19 +1219,20 @@ function Navbar() {
   const navItems = ["About", "Experience", "Projects", "Skills", "Education"];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border cursor-pointer" data-testid="navbar">
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border cursor-pointer" data-testid="navbar" role="navigation" aria-label="Main navigation">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between gap-4">
           <button
             onClick={() => scrollToSection("home")}
             className="text-lg font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
             data-testid="nav-logo"
+            aria-label="Portfolio home"
           >
             SN
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6" role="menubar">
             {navItems.map((item) => (
               <button
                 key={item}
@@ -1236,6 +1241,9 @@ function Navbar() {
                   activeSection === item.toLowerCase() ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground hover:text-foreground"
                 }`}
                 data-testid={`nav-link-${item.toLowerCase()}`}
+                role="menuitem"
+                aria-current={activeSection === item.toLowerCase() ? "page" : undefined}
+                aria-label={`Navigate to ${item}`}
               >
                 {item}
               </button>
@@ -1249,8 +1257,9 @@ function Navbar() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               className="relative p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer"
-              aria-label="Toggle theme"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
               data-testid="button-theme-toggle"
+              aria-pressed={theme === "dark"}
             >
               <motion.div
                 initial={false}
@@ -1271,8 +1280,10 @@ function Navbar() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               className="md:hidden relative p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer"
-              aria-label="Toggle mobile menu"
+              aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
               data-testid="button-hamburger"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               <motion.div
                 animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
@@ -1308,8 +1319,11 @@ function Navbar() {
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="md:hidden overflow-hidden border-t border-border relative z-50 cursor-pointer"
+        id="mobile-menu"
+        role="navigation"
+        aria-label="Mobile navigation"
       >
-        <div className="px-6 py-4 space-y-2 bg-background/95 backdrop-blur-lg">
+        <div className="px-6 py-4 space-y-2 bg-background/95 backdrop-blur-lg" role="menubar">
           {navItems.map((item) => (
             <button
               key={item}
@@ -1321,6 +1335,9 @@ function Navbar() {
                   : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
               }`}
               data-testid={`nav-link-mobile-${item.toLowerCase()}`}
+              role="menuitem"
+              aria-current={activeSection === item.toLowerCase() ? "page" : undefined}
+              aria-label={`Navigate to ${item}`}
             >
               {item}
             </button>
@@ -1361,7 +1378,7 @@ export default function Home() {
       <CustomCursor />
       <ScrollProgressBar />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1} role="main" className="focus:outline-none">
         <HeroSection />
         <AboutSection />
         <StatsSection />
