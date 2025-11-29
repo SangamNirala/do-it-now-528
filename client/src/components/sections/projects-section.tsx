@@ -110,7 +110,7 @@ function AnimatedMetric({ value, label }: { value: string; label: string }) {
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="pt-16 spacing-premium bg-background section-pattern-default relative" data-testid="section-projects">
+    <section id="projects" className="pt-16 spacing-premium bg-background section-pattern-default relative contain-strict" data-testid="section-projects" role="region" aria-label="Featured projects section">
       <div className="section-divider" />
       <div className="content-max-width mx-auto section-spacing-horizontal">
         <AnimatedSection>

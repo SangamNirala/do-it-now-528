@@ -457,7 +457,7 @@ function AboutSection() {
   ];
 
   return (
-    <section id="about" className="pt-16 spacing-premium bg-background section-pattern-default relative overflow-hidden" data-testid="section-about">
+    <section id="about" className="pt-16 spacing-premium bg-background section-pattern-default relative overflow-hidden contain-strict" data-testid="section-about" role="region" aria-label="About section">
       <div className="section-divider" />
       
       {/* Subtle Background Pattern */}

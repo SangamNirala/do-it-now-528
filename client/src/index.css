@@ -1680,4 +1680,102 @@
       border-width: 2px;
     }
   }
+
+  /* SECTION 18: PERFORMANCE OPTIMIZATIONS */
+
+  /* CSS Containment for better rendering performance */
+  .contain-layout {
+    contain: layout;
+  }
+
+  .contain-paint {
+    contain: paint;
+  }
+
+  .contain-strict {
+    contain: strict;
+  }
+
+  .contain-content {
+    contain: content;
+  }
+
+  /* Section containment */
+  section {
+    contain: layout style paint;
+  }
+
+  /* Card containment */
+  .card {
+    contain: layout style;
+  }
+
+  /* Progressive image placeholder */
+  .image-placeholder {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+    animation: skeleton-loading 2s infinite;
+  }
+
+  .dark .image-placeholder {
+    background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+    background-size: 1000px 100%;
+    animation: skeleton-loading 2s infinite;
+  }
+
+  /* Virtual list optimization */
+  .virtual-list {
+    contain: strict;
+    will-change: scroll-position;
+  }
+
+  .virtual-list-item {
+    contain: content;
+    will-change: transform;
+  }
+
+  /* Image loading optimization */
+  img[loading="lazy"] {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 2s infinite;
+  }
+
+  .dark img[loading="lazy"] {
+    background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  }
+
+  /* Optimize animations with GPU acceleration */
+  .will-animate {
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .will-animate {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+  }
+
+  /* Lazy-loaded section styling */
+  .lazy-section {
+    contain: layout style paint;
+    will-change: opacity;
+  }
+
+  /* Content visibility optimization */
+  .defer-load {
+    content-visibility: auto;
+  }
+
+  /* Efficient scrolling */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .smooth-scroll {
+      scroll-behavior: auto;
+    }
+  }
 }

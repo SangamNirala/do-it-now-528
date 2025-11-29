@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Star, Code2, FileCode, Globe, Database, Brain, Layers, Cpu, Eye, Rocket, Network, Zap, Container, Server, GitBranch, Cloud } from "lucide-react";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import type { LucideIcon } from "lucide-react";
 
 const skillIcons: Record<string, LucideIcon> = {
@@ -57,7 +58,7 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="pt-16 spacing-section-lg bg-card section-pattern-subtle relative" data-testid="section-skills">
+    <section id="skills" className="pt-16 spacing-section-lg bg-card section-pattern-subtle relative contain-strict" data-testid="section-skills" role="region" aria-label="Technical skills section">
       <div className="content-max-width mx-auto section-spacing-horizontal">
         <AnimatedSection>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12 text-center">Technical Skills</h2>
