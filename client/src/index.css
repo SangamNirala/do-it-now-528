@@ -1778,4 +1778,84 @@
       scroll-behavior: auto;
     }
   }
+
+  /* CTA Button Glow and Pulse Effects */
+  .cta-glow {
+    position: relative;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3);
+    animation: cta-glow-pulse 2s ease-in-out infinite;
+  }
+
+  .cta-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, transparent 100%);
+    animation: cta-glow-shimmer 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes cta-glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.5);
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes cta-glow-shimmer {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-glow {
+      animation: none;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3);
+    }
+
+    .cta-glow::before {
+      animation: none;
+    }
+  }
+
+  /* Micro-copy styling */
+  .cta-microcopy {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    letter-spacing: 0.5px;
+    animation: bounce-arrow 2s ease-in-out infinite;
+    margin-top: 1.5rem;
+  }
+
+  @keyframes bounce-arrow {
+    0%, 100% {
+      opacity: 0.7;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(4px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-microcopy {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
 }

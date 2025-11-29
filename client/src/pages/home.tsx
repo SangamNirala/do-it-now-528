@@ -323,52 +323,63 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="button-group flex flex-col sm:flex-row items-center justify-center mb-8 w-full"
+            className="w-full"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button
-                size="lg"
-                onClick={scrollToProjects}
-                className="w-full sm:w-auto glass-button-primary px-6 sm:px-8 py-4 sm:py-6 rounded-lg font-semibold text-white min-h-12 sm:min-h-9"
-                data-testid="button-view-projects"
-                aria-label="View my featured projects"
+            <div className="button-group flex flex-col sm:flex-row items-center justify-center mb-4 w-full gap-4">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                View Projects
-                <motion.span
-                  whileHover={{ scale: 1.3, rotate: 10 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                  className="inline-block ml-2"
-                  aria-hidden="true"
+                <Button
+                  size="lg"
+                  onClick={scrollToProjects}
+                  className="w-full sm:w-auto cta-glow glass-button-primary px-6 sm:px-8 py-4 sm:py-6 rounded-lg font-semibold text-white min-h-12 sm:min-h-9 relative z-0"
+                  data-testid="button-view-projects"
+                  aria-label="See my featured projects"
                 >
-                  <ExternalLink className="h-5 w-5" />
-                </motion.span>
-              </Button>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button
-                size="lg"
-                onClick={downloadResume}
-                className="w-full sm:w-auto glass-button px-6 sm:px-8 py-4 sm:py-6 rounded-lg font-semibold text-white min-h-12 sm:min-h-9"
-                data-testid="button-download-resume"
-                aria-label="Download my resume in PDF format"
+                  See My Work
+                  <motion.span
+                    whileHover={{ scale: 1.3, rotate: 10 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                    className="inline-block ml-2"
+                    aria-hidden="true"
+                  >
+                    <ExternalLink className="h-5 w-5" />
+                  </motion.span>
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Download Resume
-                <motion.span
-                  whileHover={{ scale: 1.3, rotate: -10 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                  className="inline-block ml-2"
-                  aria-hidden="true"
+                <Button
+                  size="lg"
+                  onClick={downloadResume}
+                  className="w-full sm:w-auto glass-button px-6 sm:px-8 py-4 sm:py-6 rounded-lg font-semibold text-white min-h-12 sm:min-h-9"
+                  data-testid="button-download-resume"
+                  aria-label="Download my resume in PDF format"
                 >
-                  <Download className="h-5 w-5" />
-                </motion.span>
-              </Button>
-            </motion.div>
+                  Download Resume
+                  <motion.span
+                    whileHover={{ scale: 1.3, rotate: -10 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                    className="inline-block ml-2"
+                    aria-hidden="true"
+                  >
+                    <Download className="h-5 w-5" />
+                  </motion.span>
+                </Button>
+              </motion.div>
+            </div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="cta-microcopy"
+              data-testid="text-cta-microcopy"
+            >
+              ↓ Scroll to see featured projects
+            </motion.p>
           </motion.div>
 
           <motion.div
