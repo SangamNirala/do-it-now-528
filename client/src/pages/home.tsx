@@ -222,7 +222,7 @@ function HeroSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 page-section" id="home" data-testid="section-hero">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 page-section cursor-pointer" id="home" data-testid="section-hero">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-bg"
         style={{ 
@@ -257,7 +257,7 @@ function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 md:p-12 shadow-2xl"
+          className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 md:p-12 shadow-2xl cursor-pointer"
           style={{ willChange: "transform, opacity" }}
         >
           {/* Profile Picture with Glow */}
