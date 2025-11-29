@@ -233,6 +233,9 @@ function HeroSection() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
       
+      {/* Animated Pattern Overlay */}
+      <div className="absolute inset-0 hero-pattern pointer-events-none" />
+      
       {/* Animated Background Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
