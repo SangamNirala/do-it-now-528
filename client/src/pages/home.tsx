@@ -687,12 +687,14 @@ function StatCard({ stat, index, shouldAnimate }: { stat: any; index: number; sh
 
 function EducationSection() {
   return (
-    <section id="education" className="pt-16 py-20 md:py-28 bg-background" data-testid="section-education">
+    <section id="education" className="pt-16 py-24 md:py-32 bg-background relative" data-testid="section-education">
+      <div className="section-divider" />
       <div className="max-w-4xl mx-auto px-6">
         <AnimatedSection>
-          <div className="flex items-center justify-center gap-3 mb-12">
+          <div className="flex flex-col items-center justify-center gap-3 mb-12">
             <GraduationCap className="h-8 w-8 text-primary" />
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">Education</h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
           </div>
         </AnimatedSection>
 
@@ -738,12 +740,14 @@ const honors = [
 
 function HonorsSection() {
   return (
-    <section id="honors" className="py-20 md:py-28 bg-card" data-testid="section-honors">
+    <section id="honors" className="py-24 md:py-32 bg-card relative" data-testid="section-honors">
+      <div className="section-divider" />
       <div className="max-w-5xl mx-auto px-6">
         <AnimatedSection>
-          <div className="flex items-center justify-center gap-3 mb-12">
+          <div className="flex flex-col items-center justify-center gap-3 mb-12">
             <Trophy className="h-8 w-8 text-primary" />
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">Honors & Achievements</h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
           </div>
         </AnimatedSection>
 
@@ -782,7 +786,8 @@ function CTASection() {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-background via-primary/5 to-background relative overflow-hidden" data-testid="section-cta">
+    <section className="py-24 md:py-32 bg-gradient-to-b from-background via-primary/5 to-background relative overflow-hidden" data-testid="section-cta">
+      <div className="section-divider" />
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         <AnimatedSection>
@@ -790,6 +795,7 @@ function CTASection() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               Let's Work Together
             </h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full mx-auto mb-4" />
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Ready to build something amazing? Whether it's a production ML system, automation workflow, or full-stack solution, let's connect and create impact together.
             </p>
@@ -868,7 +874,8 @@ function Footer() {
   };
 
   return (
-    <footer className="py-16 bg-background border-t border-border" data-testid="section-footer">
+    <footer className="py-20 md:py-28 bg-background border-t border-border relative" data-testid="section-footer">
+      <div className="section-divider" />
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div>
