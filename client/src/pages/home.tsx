@@ -1048,16 +1048,18 @@ function Navbar() {
           opacity: mobileMenuOpen ? 1 : 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="md:hidden overflow-hidden border-t border-border"
+        className="md:hidden overflow-hidden border-t border-border pointer-events-none"
+        style={{ pointerEvents: mobileMenuOpen ? "auto" : "none" }}
       >
-        <div className="px-6 py-4 space-y-2 bg-background/95 backdrop-blur-lg">
+        <div className="px-6 py-4 space-y-2 bg-background/95 backdrop-blur-lg pointer-events-auto">
           {navItems.map((item) => (
             <motion.button
               key={item}
+              type="button"
               onClick={() => scrollToSection(item.toLowerCase())}
               whileHover={{ x: 8 }}
               transition={{ duration: 0.2 }}
-              className={`block w-full text-left py-2 px-4 rounded-lg font-medium transition-all duration-300 ${
+              className={`block w-full text-left py-3 px-4 rounded-lg font-medium transition-all duration-300 cursor-pointer ${
                 activeSection === item.toLowerCase()
                   ? "text-primary bg-primary/10"
                   : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
