@@ -1084,8 +1084,8 @@ function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed bottom-0 left-0 right-0 bg-black/20 md:hidden pointer-events-auto"
-            style={{ top: "120px", zIndex: 30 }}
+            className="fixed inset-0 bg-black/20 md:hidden pointer-events-auto"
+            style={{ top: "auto", bottom: 0, zIndex: 30 }}
             data-testid="mobile-menu-backdrop"
           />
         )}
