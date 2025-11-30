@@ -51,6 +51,46 @@
     @apply relative z-10 text-white font-bold tracking-wider;
   }
 
+  /* Enhanced Navbar Glassmorphism */
+  .navbar-glass {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .navbar-glass::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      hsl(217 91% 60%) 25%, 
+      hsl(271 91% 65%) 50%, 
+      hsl(340 82% 52%) 75%, 
+      transparent 100%);
+    pointer-events: none;
+  }
+
+  .dark .navbar-glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .navbar-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
   /* Gradient border effects */
   .gradient-border {
     position: relative;
