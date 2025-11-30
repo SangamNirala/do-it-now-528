@@ -90,13 +90,21 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8 relative" role="menubar">
-            {/* Animated Underline */}
-            <motion.div
-              className="absolute bottom-0 h-0.5 bg-gradient-to-r from-primary to-purple-500"
-              animate={{ width: underlineStyle.width, x: underlineStyle.x }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              style={{ originX: 0 }}
-            />
+              {/* Animated Active Pill Background */}
+              <motion.div
+                className="absolute inset-y-1 bg-gradient-to-r from-primary/20 to-purple-500/15 rounded-lg pointer-events-none"
+                animate={{ width: underlineStyle.width, x: underlineStyle.x }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                style={{ originX: 0 }}
+              />
+              
+              {/* Animated Underline */}
+              <motion.div
+                className="absolute bottom-0 h-0.5 bg-gradient-to-r from-primary to-purple-500"
+                animate={{ width: underlineStyle.width, x: underlineStyle.x }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                style={{ originX: 0 }}
+              />
 
             {navItems.map((item) => (
               <motion.button
@@ -108,10 +116,10 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className={`text-sm font-medium transition-all duration-200 cursor-pointer relative py-2.5 px-3 rounded-lg h-full flex items-center ${
+                className={`text-sm font-medium transition-all duration-200 cursor-pointer relative py-2.5 px-3 rounded-lg h-full flex items-center z-10 ${
                   activeSection === item.toLowerCase() 
                     ? "text-primary font-semibold" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-gradient-to-r hover:from-primary/15 hover:to-purple-500/15 hover:shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
                 data-testid={`nav-link-${item.toLowerCase()}`}
                 role="menuitem"

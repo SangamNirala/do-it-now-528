@@ -188,6 +188,21 @@
     @apply relative p-2.5 rounded-lg text-muted-foreground hover:text-foreground bg-primary/5 hover:bg-primary/15 transition-all duration-300 cursor-pointer border border-primary/20 hover:border-primary/40 h-full flex items-center justify-center;
   }
 
+  /* Active Nav Pill Styling */
+  .nav-item-active {
+    @apply relative;
+  }
+
+  .nav-item-active::after {
+    content: '';
+    position: absolute;
+    inset: 0.25rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border-radius: 0.5rem;
+    pointer-events: none;
+    z-index: -1;
+  }
+
   /* Unified Navigation Hover Effects */
   .nav-item-hover:hover {
     @apply bg-primary/10;
