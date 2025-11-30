@@ -10,15 +10,8 @@ export function Footer() {
   return (
     <footer className="bg-card border-t border-primary/10 relative" data-testid="section-footer" role="contentinfo">
       <div className="content-max-width mx-auto section-spacing-horizontal py-16">
-        {/* Newsletter Section */}
-        <div className="mb-12">
-          <NewsletterSection />
-        </div>
-
-        <Separator className="my-8" />
-
-        {/* Footer Content Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        {/* Footer Content Grid - 5 Columns */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {footerColumns.map((column, index) => (
             <motion.div
               key={column.title}
@@ -44,6 +37,15 @@ export function Footer() {
               </ul>
             </motion.div>
           ))}
+
+          {/* Newsletter Column */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <NewsletterSection />
+          </motion.div>
         </div>
 
         <Separator className="my-8" />
