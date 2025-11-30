@@ -1,5 +1,7 @@
 import { Code2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { StaggeredContainer, SectionHeading } from "@/components/animations/scroll-animations";
+import { StaggeredText } from "@/components/animations/staggered-text";
 import { ProjectCard } from "./project-card";
 import { projects } from "./projects-data";
 
@@ -11,7 +13,15 @@ export function ProjectsSection() {
         {/* Section Heading */}
         <SectionHeading className="flex flex-col items-center justify-center gap-3 mb-12">
           <Code2 className="h-8 w-8 text-primary" />
-          <h2 className="gradient-text-heading">Featured Projects</h2>
+          <motion.h2 
+            className="gradient-text-heading inline-block cursor-pointer"
+            onHoverStart={(event) => {
+              const target = event.currentTarget;
+              target.style.animation = "glitch-text 0.3s ease-in-out";
+            }}
+          >
+            <StaggeredText text="Featured Projects" delay={0.1} glitch={false} />
+          </motion.h2>
           <div className="w-16 gradient-underline-animated" />
         </SectionHeading>
 

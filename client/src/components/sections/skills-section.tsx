@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/utils/animated-section";
+import { StaggeredText } from "@/components/animations/staggered-text";
 import { skillIcons, skillsByTier, tierConfig, StarIcon } from "./skills-data";
 
 export function SkillsSection() {
@@ -16,9 +17,15 @@ export function SkillsSection() {
       <div className="content-max-width mx-auto section-spacing-horizontal">
         {/* Section Heading */}
         <AnimatedSection>
-          <h2 className="gradient-text-heading mb-12 text-center">
-            Technical Skills
-          </h2>
+          <motion.h2 
+            className="gradient-text-heading mb-12 text-center inline-block w-full cursor-pointer"
+            onHoverStart={(event) => {
+              const target = event.currentTarget;
+              target.style.animation = "glitch-text 0.3s ease-in-out";
+            }}
+          >
+            <StaggeredText text="Technical Skills" delay={0.1} />
+          </motion.h2>
         </AnimatedSection>
 
         {/* Skills Grid by Tier */}

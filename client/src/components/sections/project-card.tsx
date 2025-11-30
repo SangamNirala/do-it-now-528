@@ -138,7 +138,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Content Section */}
         <div className="p-6 flex flex-col flex-1">
           <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors" data-testid={`text-project-title-${index}`}>
-            {project.title}
+            <StaggeredText text={project.title} delay={0.05} />
           </h3>
           <p className="text-muted-foreground mb-4 text-sm">{project.description}</p>
 

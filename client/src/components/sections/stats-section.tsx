@@ -32,8 +32,20 @@ function StatCard({ stat, index, shouldAnimate }: { stat: any; index: number; sh
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
       <div className="relative">
-        <stat.icon className="h-8 w-8 text-white/40 mb-2 group-hover:text-white/60 transition-colors" />
-        <p className="text-3xl font-bold text-white mb-1">{count}{stat.label === "Code Lines" ? "+" : ""}</p>
+        <motion.div
+          whileInView={{ scale: [0.8, 1.1, 1] }}
+          transition={{ duration: 0.5 }}
+        >
+          <stat.icon className="h-8 w-8 text-white/40 mb-2 group-hover:text-white/60 transition-colors" />
+        </motion.div>
+        <motion.p 
+          className="text-3xl font-bold text-white mb-1 counter-animate"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          {count}{stat.label === "Code Lines" ? "+" : ""}
+        </motion.p>
         <p className="text-sm text-white/80">{stat.label}</p>
       </div>
     </motion.div>
@@ -50,8 +62,19 @@ export function StatsSection() {
       <div className="content-max-width mx-auto section-spacing-horizontal">
         <AnimatedSection>
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">Quick Stats</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-pink-500 mx-auto rounded-full"></div>
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4 inline-block"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              onHoverStart={(event) => {
+                const target = event.currentTarget;
+                target.style.animation = "glitch-text 0.3s ease-in-out";
+              }}
+            >
+              Quick Stats
+            </motion.h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-pink-500 mx-auto rounded-full mt-4"></div>
           </div>
         </AnimatedSection>
 
