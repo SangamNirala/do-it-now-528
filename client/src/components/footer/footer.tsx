@@ -19,7 +19,7 @@ export function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
             >
-              <h3 className="font-semibold text-foreground mb-4 text-sm">
+              <h3 className="gradient-text-small font-semibold mb-4 text-sm">
                 {column.title}
               </h3>
               <ul className="space-y-3">
@@ -27,7 +27,7 @@ export function Footer() {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-xs text-muted-foreground hover:text-primary transition-colors duration-200"
+                      className="text-xs text-muted-foreground hover:gradient-text-small hover:font-semibold transition-all duration-200"
                       data-testid={`link-footer-${column.title.toLowerCase()}-${link.name.toLowerCase()}`}
                     >
                       {link.name}
@@ -60,7 +60,7 @@ export function Footer() {
             className="flex flex-col gap-2"
           >
             <p className="text-sm text-muted-foreground">
-              <span className="text-foreground font-semibold">Sangam Nirala</span>
+              <span className="gradient-text-small font-semibold">Sangam Nirala</span>
               <br />
               {contactInfo.location}
             </p>

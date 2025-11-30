@@ -22,7 +22,7 @@ export function AboutSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="about-heading mb-6"
+              className="gradient-text-heading mb-6"
               data-testid="text-about-title"
             >
               Impact-Driven ML Engineer
@@ -31,7 +31,7 @@ export function AboutSection() {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="gradient-underline mx-auto w-20 mb-8"
+              className="gradient-underline-animated mx-auto w-20 mb-8"
               style={{ transformOrigin: "center" }}
             />
             <motion.p 

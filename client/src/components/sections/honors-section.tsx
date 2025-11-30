@@ -29,15 +29,15 @@ export function HonorsSection() {
       <div className="content-max-width mx-auto section-spacing-horizontal">
         <SectionHeading className="flex flex-col items-center justify-center gap-3 mb-12">
           <Trophy className="h-8 w-8 text-primary" />
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Honors & Achievements</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
+          <h2 className="gradient-text-heading">Honors & Achievements</h2>
+          <div className="w-16 gradient-underline-animated" />
         </SectionHeading>
 
         <StaggeredContainer className="grid md:grid-cols-2 gap-6">
           {honors.map((honor, index) => (
             <StaggeredItem key={index}>
                 <Card
-                  className={`card-depth-2 p-6 h-full honor-card card-colored-border border-l-4 ${honor.borderColor} cursor-pointer hover-elevate`}
+                  className={`glass-dark gradient-border card-depth-2 p-6 h-full honor-card card-colored-border border-l-4 ${honor.borderColor} cursor-pointer hover-elevate`}
                   data-testid={`card-honor-${index}`}
                 >
                   <div className="flex items-start gap-4">
