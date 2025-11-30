@@ -34,11 +34,18 @@ export function SkillsSection() {
                 >
                   {/* Tier Header */}
                   <div className="flex items-center gap-3 mb-4">
-                    <div
-                      className={`p-3 rounded-lg bg-gradient-to-br ${config.color}`}
+                    <motion.div
+                      className={`p-3 rounded-lg bg-gradient-to-br ${config.color} transform-gpu`}
+                      whileHover={{
+                        rotateX: 360,
+                        rotateY: 20,
+                        scale: 1.05
+                      }}
+                      transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
+                      style={{ perspective: "1000px" }}
                     >
                       <span className="text-sm font-bold text-white">{tier}</span>
-                    </div>
+                    </motion.div>
                     <div className="flex gap-1">
                       {Array.from({ length: config.stars }).map((_, i) => (
                         <StarIcon
@@ -82,14 +89,21 @@ export function SkillsSection() {
                     })}
                   </div>
 
-                  {/* Tech Badge */}
+                  {/* Tech Badge - 3D Rotating */}
                   <motion.div
-                    whileHover={{ scale: 1.12, y: -2 }}
-                    transition={{ type: "spring", stiffness: 400 }}
+                    whileHover={{
+                      scale: 1.15,
+                      rotateY: 360,
+                      rotateX: 10,
+                      y: -4
+                    }}
+                    transition={{ type: "spring", stiffness: 300, duration: 0.8 }}
+                    style={{ perspective: "1000px" }}
                   >
                     <Badge
                       variant="secondary"
-                      className={`mt-6 bg-gradient-to-r ${config.color} text-white border-0 skill-badge-hover cursor-pointer inline-block`}
+                      className={`mt-6 bg-gradient-to-r ${config.color} text-white border-0 skill-badge-hover cursor-pointer inline-block transform-gpu`}
+                      style={{ transformStyle: "preserve-3d" }}
                     >
                       {skills.length} Skills
                     </Badge>

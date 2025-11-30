@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { NeuralNetwork3D } from "@/components/3d/neural-network-3d";
 import heroBackground from "@assets/generated_images/neural_network_tech_background.png";
 
 interface HeroBackgroundProps {
@@ -8,6 +9,11 @@ interface HeroBackgroundProps {
 export function HeroBackground({ scrollY }: HeroBackgroundProps) {
   return (
     <>
+      {/* 3D Neural Network Visualization */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <NeuralNetwork3D />
+      </div>
+
       {/* Parallax background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-bg"

@@ -19,9 +19,15 @@ function StatCard({ stat, index, shouldAnimate }: { stat: any; index: number; sh
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`relative overflow-hidden rounded-xl p-6 bg-gradient-to-br ${stat.gradient} opacity-10 hover:opacity-20 transition-opacity duration-300 group cursor-pointer`}
-      style={{ willChange: "transform, opacity" }}
+      whileHover={{
+        scale: 1.05,
+        rotateY: 15,
+        rotateX: -8,
+        boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
+      }}
+      transition={{ duration: 0.4, delay: index * 0.1, hover: { type: "spring", stiffness: 300 } }}
+      className={`relative overflow-hidden rounded-xl p-6 bg-gradient-to-br ${stat.gradient} opacity-10 hover:opacity-20 transition-opacity duration-300 group cursor-pointer transform-gpu`}
+      style={{ willChange: "transform, opacity", perspective: "1000px" }}
       data-testid={`stat-card-${index}`}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
@@ -57,9 +63,15 @@ export function StatsSection() {
             key="deployed"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 5 * 0.1 }}
-            className="relative overflow-hidden rounded-xl p-6 bg-gradient-to-br from-indigo-500 to-blue-500 opacity-10 hover:opacity-20 transition-opacity duration-300 group cursor-pointer"
-            style={{ willChange: "transform, opacity" }}
+            whileHover={{
+              scale: 1.05,
+              rotateY: 15,
+              rotateX: -8,
+              boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
+            }}
+            transition={{ duration: 0.4, delay: 5 * 0.1, hover: { type: "spring", stiffness: 300 } }}
+            className="relative overflow-hidden rounded-xl p-6 bg-gradient-to-br from-indigo-500 to-blue-500 opacity-10 hover:opacity-20 transition-opacity duration-300 group cursor-pointer transform-gpu"
+            style={{ willChange: "transform, opacity", perspective: "1000px" }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
             <div className="relative">

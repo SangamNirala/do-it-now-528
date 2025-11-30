@@ -46,16 +46,20 @@ export function ExperienceCard({
             whileHover={{
               scale: 1.08,
               rotateZ: 1,
-              boxShadow: "0 25px 50px rgba(0, 0, 0, 0.2)"
+              rotateX: 5,
+              rotateY: -5,
+              boxShadow: "0 25px 50px rgba(0, 0, 0, 0.3)"
             }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className={`ml-12 md:ml-0 md:w-1/2 cursor-pointer ${
+            className={`ml-12 md:ml-0 md:w-1/2 cursor-pointer transform-gpu ${
               index % 2 === 0 ? "md:mr-8" : "md:ml-8"
             }`}
+            style={{ perspective: "1000px" }}
           >
             <Card
-              className="glass-dark gradient-border card-depth-2 p-6 magnetic-hover"
+              className="glass-dark gradient-border card-depth-2 p-6 magnetic-hover transform-gpu"
               data-testid={`card-experience-${index}`}
+              style={{ transformStyle: "preserve-3d" }}
             >
             {/* Header with Logo */}
             <div className="flex items-start gap-4 mb-4">
