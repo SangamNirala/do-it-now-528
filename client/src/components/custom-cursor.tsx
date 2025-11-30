@@ -30,13 +30,13 @@ export function CustomCursor() {
       
       // Check if we're inside the AI dialog by traversing up the DOM
       let isInDialog = false;
-      let current = target;
+      let current: HTMLElement | null = target;
       while (current && current !== document.body) {
         if (current.getAttribute("data-testid") === "ai-chat-dialog") {
           isInDialog = true;
           break;
         }
-        current = current.parentElement;
+        current = current.parentElement as HTMLElement | null;
       }
       
       const isInteractive =
