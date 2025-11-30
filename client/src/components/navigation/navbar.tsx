@@ -85,14 +85,19 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
             />
 
             {navItems.map((item) => (
-              <button
+              <motion.button
                 key={item}
                 ref={(el) => {
                   navRefs.current[item.toLowerCase()] = el;
                 }}
                 onClick={() => scrollToSection(item.toLowerCase())}
-                className={`text-sm font-medium transition-colors duration-200 cursor-pointer relative py-2 ${
-                  activeSection === item.toLowerCase() ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className={`text-sm font-medium transition-colors duration-200 cursor-pointer relative py-2 px-1 rounded-md ${
+                  activeSection === item.toLowerCase() 
+                    ? "text-primary" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
                 }`}
                 data-testid={`nav-link-${item.toLowerCase()}`}
                 role="menuitem"
@@ -100,7 +105,7 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
                 aria-label={`Navigate to ${item}`}
               >
                 {item}
-              </button>
+              </motion.button>
             ))}
           </div>
 
