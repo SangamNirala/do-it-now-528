@@ -11,8 +11,8 @@ export function ProjectsSection() {
         {/* Section Heading */}
         <SectionHeading className="flex flex-col items-center justify-center gap-3 mb-12">
           <Code2 className="h-8 w-8 text-primary" />
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Featured Projects</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
+          <h2 className="gradient-text-heading">Featured Projects</h2>
+          <div className="w-16 gradient-underline-animated" />
         </SectionHeading>
 
         {/* Projects Grid */}

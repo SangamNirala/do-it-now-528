@@ -18,7 +18,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="project-card card-depth-3 p-0 overflow-hidden group transition-all duration-300 transform hover:scale-105 rounded-lg card-3d-hover hover-depth flex flex-col"
+        className="glass-enhanced gradient-border-animated card-depth-3 p-0 overflow-hidden group transition-all duration-300 transform hover:scale-105 rounded-lg card-3d-hover hover-depth flex flex-col"
         data-testid={`card-project-${index}`}
       >
         {/* Header Section with Gradient Background */}

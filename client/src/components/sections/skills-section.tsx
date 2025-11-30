@@ -16,7 +16,7 @@ export function SkillsSection() {
       <div className="content-max-width mx-auto section-spacing-horizontal">
         {/* Section Heading */}
         <AnimatedSection>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12 text-center">
+          <h2 className="gradient-text-heading mb-12 text-center">
             Technical Skills
           </h2>
         </AnimatedSection>
@@ -29,7 +29,7 @@ export function SkillsSection() {
             return (
               <AnimatedSection key={tier}>
                 <Card
-                  className="card-depth-2 p-6 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                  className="glass-animated gradient-border card-depth-2 p-6 transition-all duration-300 transform hover:scale-105 cursor-pointer"
                   data-testid={`card-skill-tier-${tierIndex}`}
                 >
                   {/* Tier Header */}

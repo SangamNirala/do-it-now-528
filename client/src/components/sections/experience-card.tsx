@@ -43,7 +43,7 @@ export function ExperienceCard({
 
           {/* Experience Card */}
           <Card
-            className={`card-depth-2 ml-12 md:ml-0 md:w-1/2 p-6 transition-all duration-300 transform hover:scale-105 cursor-pointer ${
+            className={`glass-dark gradient-border card-depth-2 ml-12 md:ml-0 md:w-1/2 p-6 transition-all duration-300 transform hover:scale-105 cursor-pointer ${
               index % 2 === 0 ? "md:mr-8" : "md:ml-8"
             }`}
             data-testid={`card-experience-${index}`}

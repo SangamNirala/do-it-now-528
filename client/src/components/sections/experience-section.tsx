@@ -36,8 +36,8 @@ export function ExperienceSection() {
         <AnimatedSection>
           <div className="flex flex-col items-center justify-center gap-3 mb-12">
             <Briefcase className="h-8 w-8 text-primary" />
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Experience</h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-primary to-purple-500 rounded-full" />
+            <h2 className="gradient-text-heading">Experience</h2>
+            <div className="w-16 gradient-underline-animated" />
           </div>
         </AnimatedSection>
 
@@ -57,7 +57,7 @@ export function ExperienceSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.2 }}
-                className="fixed bg-background/95 backdrop-blur-md border border-primary/30 rounded-lg p-3 shadow-xl z-50 pointer-events-none"
+                className="fixed glass-enhanced border border-primary/40 rounded-lg p-3 shadow-xl z-50 pointer-events-none"
                 style={{
                   top: `${tooltipPosition.top}px`,
                   left: `${tooltipPosition.left - 80}px`,
