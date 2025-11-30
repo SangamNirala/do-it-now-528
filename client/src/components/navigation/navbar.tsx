@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sun, Moon, Menu, X, Download } from "lucide-react";
@@ -8,6 +8,8 @@ import { MobileMenu } from "./mobile-menu";
 export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => void; onAIClick: () => void }) {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [underlineStyle, setUnderlineStyle] = useState({ width: 0, x: 0 });
+  const navRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -25,6 +27,15 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Update underline position when active section changes
+  useEffect(() => {
+    const activeRef = navRefs.current[activeSection];
+    if (activeRef) {
+      const { offsetLeft, offsetWidth } = activeRef;
+      setUnderlineStyle({ width: offsetWidth, x: offsetLeft });
+    }
+  }, [activeSection]);
 
   const scrollToSection = (id: string) => {
     if (!id) {
@@ -64,13 +75,24 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
           </motion.button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6" role="menubar">
+          <div className="hidden md:flex items-center gap-6 relative" role="menubar">
+            {/* Animated Underline */}
+            <motion.div
+              className="absolute bottom-0 h-0.5 bg-gradient-to-r from-primary to-purple-500"
+              animate={{ width: underlineStyle.width, x: underlineStyle.x }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              style={{ originX: 0 }}
+            />
+
             {navItems.map((item) => (
               <button
                 key={item}
+                ref={(el) => {
+                  navRefs.current[item.toLowerCase()] = el;
+                }}
                 onClick={() => scrollToSection(item.toLowerCase())}
-                className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
-                  activeSection === item.toLowerCase() ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground hover:text-foreground"
+                className={`text-sm font-medium transition-colors duration-200 cursor-pointer relative py-2 ${
+                  activeSection === item.toLowerCase() ? "text-primary" : "text-muted-foreground hover:text-foreground"
                 }`}
                 data-testid={`nav-link-${item.toLowerCase()}`}
                 role="menuitem"
