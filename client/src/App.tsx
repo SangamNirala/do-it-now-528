@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SkipToContent } from "@/components/accessibility/skip-to-content";
+import { CustomCursor } from "@/components/custom-cursor";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 
@@ -23,6 +24,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <SkipToContent />
+          <CustomCursor />
           <Toaster />
           <Router />
         </TooltipProvider>
