@@ -63,11 +63,10 @@ export function StatsSection() {
         <AnimatedSection>
           <div className="text-center mb-12">
             <motion.h2 
-              className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4 heading-letter-spacing-hover cursor-default"
+              className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4 cursor-default"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              whileHover={{ letterSpacing: "0.03em" }}
             >
               Quick Stats
             </motion.h2>

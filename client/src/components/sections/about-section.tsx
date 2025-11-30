@@ -22,8 +22,7 @@ export function AboutSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              whileHover={{ letterSpacing: "0.03em" }}
-              className="gradient-text-heading mb-6 heading-letter-spacing-hover cursor-default"
+              className="gradient-text-heading mb-6 cursor-default"
               data-testid="text-about-title"
             >
               Impact-Driven ML Engineer
@@ -39,8 +38,8 @@ export function AboutSection() {
               initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.7, delay: 0.3, type: "spring", stiffness: 100 }}
-              whileHover={{ scale: 1.015, letterSpacing: "0.02em" }}
-              className="section-subtitle tracking-normal sm:tracking-wide max-w-full px-3 mx-auto leading-tight heading-letter-spacing-hover"
+              whileHover={{ scale: 1.015 }}
+              className="section-subtitle tracking-normal sm:tracking-wide max-w-full px-3 mx-auto leading-tight"
               data-testid="text-about-subtitle"
               style={{ willChange: "transform, opacity, filter" }}
             >

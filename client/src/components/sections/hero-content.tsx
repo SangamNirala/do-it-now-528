@@ -41,8 +41,7 @@ export function HeroContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          whileHover={{ letterSpacing: "0.05em" }}
-          className="hero-title bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent mb-4 line-clamp-2 sm:line-clamp-none heading-letter-spacing-hover"
+          className="hero-title bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent mb-4 line-clamp-2 sm:line-clamp-none"
           data-testid="text-hero-name"
           style={{ willChange: "transform, opacity" }}
         >
@@ -54,8 +53,8 @@ export function HeroContent() {
           initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.7, delay: 0.5, type: "spring", stiffness: 100 }}
-          whileHover={{ scale: 1.02, letterSpacing: "0.02em" }}
-          className="hero-subtitle text-blue-100/95 mb-6 break-words heading-letter-spacing-hover"
+          whileHover={{ scale: 1.02 }}
+          className="hero-subtitle text-blue-100/95 mb-6 break-words"
           data-testid="text-hero-title"
           style={{ willChange: "transform, opacity, filter" }}
         >

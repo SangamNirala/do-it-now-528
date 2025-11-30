@@ -136,7 +136,7 @@
 
   /* Typography hierarchy enhancements */
   .section-heading {
-    @apply text-2xl md:text-4xl lg:text-5xl font-bold tracking-normal hover:tracking-wider transition-all duration-300 cursor-default;
+    @apply text-2xl md:text-4xl lg:text-5xl font-bold tracking-normal transition-all duration-300 cursor-default;
   }
 
   .section-subtitle {
@@ -149,15 +149,11 @@
 
   /* Hero section typography */
   .hero-title {
-    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight hover:tracking-tight transition-all duration-300;
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight transition-all duration-300;
   }
 
   .hero-subtitle {
     @apply text-lg sm:text-xl md:text-2xl font-medium transition-all duration-300;
-  }
-
-  .heading-letter-spacing-hover:hover {
-    @apply tracking-wider;
   }
 
   .gradient-text-small {

@@ -59,8 +59,7 @@ export function ExperienceSection() {
           <div className="flex flex-col items-center justify-center gap-3 mb-12">
             <Briefcase className="h-8 w-8 text-primary" />
             <motion.h2 
-              whileHover={{ letterSpacing: "0.03em" }}
-              className="gradient-text-heading heading-letter-spacing-hover cursor-default"
+              className="gradient-text-heading cursor-default"
             >
               Experience
             </motion.h2>
