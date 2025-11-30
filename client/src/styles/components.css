@@ -92,7 +92,7 @@
 
   /* Premium AI Button - Vibrant & Eye-Catching */
   .ai-button {
-    @apply relative px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 cursor-pointer hidden sm:flex items-center gap-2 overflow-hidden;
+    @apply relative px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer hidden sm:flex items-center gap-2 overflow-hidden min-h-9;
     background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
     border: 2px solid rgba(59, 130, 246, 0.8);
     color: #ffffff;
