@@ -1,21 +1,21 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "public": false,
+  "outputDirectory": "dist",
   "framework": null,
-  "functions": {
-    "server/index.ts": {
-      "runtime": "nodejs20.x"
-    }
+  "env": {
+    "NODE_ENV": "production"
   },
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/server/index.ts"
-    }
-  ],
   "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html; charset=utf-8"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
@@ -25,8 +25,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
