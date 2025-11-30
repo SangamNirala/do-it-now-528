@@ -11,15 +11,21 @@ export function Footer() {
     <footer className="bg-card border-t border-primary/10 relative" data-testid="section-footer" role="contentinfo">
       <div className="content-max-width mx-auto section-spacing-horizontal py-16">
         {/* Footer Content Grid - Responsive: 2 cols mobile, 3 cols tablet, 5 cols desktop */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
           {footerColumns.map((column, index) => (
             <motion.div
               key={column.title}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
+              whileHover={{ 
+                y: -4,
+                transition: { type: "spring", stiffness: 400, damping: 25 }
+              }}
+              transition={{ delay: index * 0.08, duration: 0.4 }}
+              className="footer-glass-card group"
+              data-testid={`footer-column-${column.title.toLowerCase()}`}
             >
-              <h3 className="gradient-text-small font-semibold mb-4 text-sm">
+              <h3 className="gradient-text-small font-semibold mb-4 text-sm tracking-wide uppercase">
                 {column.title}
               </h3>
               <ul className="space-y-3">
@@ -27,11 +33,12 @@ export function Footer() {
                   <li key={link.name}>
                     <motion.a
                       href={link.href}
-                      className="text-xs text-muted-foreground text-underline-hover transition-all duration-200"
-                      whileHover={{ color: "#7c3aed", scale: 1.05 }}
+                      className="text-xs text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-1.5 group/link"
+                      whileHover={{ x: 3 }}
                       transition={{ duration: 0.2 }}
                       data-testid={`link-footer-${column.title.toLowerCase()}-${link.name.toLowerCase()}`}
                     >
+                      <span className="w-0 h-px bg-gradient-to-r from-primary to-purple-500 group-hover/link:w-3 transition-all duration-200" />
                       {link.name}
                     </motion.a>
                   </li>
@@ -40,11 +47,17 @@ export function Footer() {
             </motion.div>
           ))}
 
-          {/* Newsletter Column */}
+          {/* Newsletter Column - Enhanced Glass Card */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            whileHover={{ 
+              y: -4,
+              transition: { type: "spring", stiffness: 400, damping: 25 }
+            }}
+            transition={{ delay: 0.32, duration: 0.4 }}
+            className="footer-glass-card footer-newsletter-card group"
+            data-testid="footer-column-newsletter"
           >
             <NewsletterSection />
           </motion.div>

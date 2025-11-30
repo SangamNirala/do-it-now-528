@@ -486,6 +486,115 @@
     @apply h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent dark:via-primary/50;
   }
 
+  /* Footer Glassmorphism Cards */
+  .footer-glass-card {
+    @apply relative p-5 rounded-xl transition-all duration-300;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 4px 24px -1px rgba(0, 0, 0, 0.03),
+      0 2px 8px -1px rgba(0, 0, 0, 0.02),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .footer-glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.15) 0%,
+      rgba(168, 85, 247, 0.08) 50%,
+      transparent 100%
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .footer-glass-card:hover::before {
+    opacity: 1;
+  }
+
+  .footer-glass-card:hover {
+    border-color: rgba(124, 58, 237, 0.15);
+    box-shadow: 
+      0 8px 32px -4px rgba(124, 58, 237, 0.08),
+      0 4px 16px -2px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* Light mode adjustments */
+  .footer-glass-card {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.4) 100%
+    );
+    border-color: rgba(124, 58, 237, 0.08);
+  }
+
+  .dark .footer-glass-card {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .dark .footer-glass-card:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    border-color: rgba(124, 58, 237, 0.2);
+  }
+
+  /* Newsletter Card - Special enhanced styling */
+  .footer-newsletter-card {
+    background: linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.08) 0%,
+      rgba(168, 85, 247, 0.04) 100%
+    );
+    border-color: rgba(124, 58, 237, 0.12);
+  }
+
+  .dark .footer-newsletter-card {
+    background: linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.1) 0%,
+      rgba(168, 85, 247, 0.05) 100%
+    );
+    border-color: rgba(124, 58, 237, 0.15);
+  }
+
+  .footer-newsletter-card:hover {
+    border-color: rgba(124, 58, 237, 0.25);
+    box-shadow: 
+      0 8px 32px -4px rgba(124, 58, 237, 0.15),
+      0 4px 16px -2px rgba(168, 85, 247, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
   .footer-section-title {
     @apply text-lg font-bold text-foreground mb-4;
   }
