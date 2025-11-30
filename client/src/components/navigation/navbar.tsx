@@ -48,7 +48,7 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
     } else {
       const element = document.getElementById(id);
       if (element) {
-        const navbarHeight = 80;
+        const navbarHeight = 68;
         const elementPosition = element.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - navbarHeight;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
@@ -68,8 +68,8 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
       />
       
       <nav className="fixed top-0 left-0 right-0 z-40 navbar-glass cursor-pointer" data-testid="navbar" role="navigation" aria-label="Main navigation">
-        <div className="max-w-6xl mx-auto px-8 py-5">
-        <div className="flex items-center justify-between gap-6 h-12">
+        <div className="max-w-6xl mx-auto px-8 py-3">
+        <div className="flex items-center justify-between gap-6 h-10">
           {/* Logo Section */}
           <div className="flex items-center gap-6">
             {/* Logo */}
