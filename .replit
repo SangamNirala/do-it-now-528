@@ -50,3 +50,6 @@ waitForPort = 5000
 
 [userenv.shared]
 GEMINI_API_KEY = "AIzaSyBIJVDHCE5m0KIteBOz7vXtpSjCQI7dv9E"
+
+[agent]
+integrations = ["github:1.0.0"]
