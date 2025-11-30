@@ -17,15 +17,9 @@ export function SkillsSection() {
       <div className="content-max-width mx-auto section-spacing-horizontal">
         {/* Section Heading */}
         <AnimatedSection>
-          <motion.h2 
-            className="gradient-text-heading mb-12 text-center inline-block w-full cursor-pointer"
-            onHoverStart={(event) => {
-              const target = event.currentTarget;
-              target.style.animation = "glitch-text 0.3s ease-in-out";
-            }}
-          >
+          <h2 className="gradient-text-heading mb-12 text-center">
             <StaggeredText text="Technical Skills" delay={0.1} />
-          </motion.h2>
+          </h2>
         </AnimatedSection>
 
         {/* Skills Grid by Tier */}

@@ -13,15 +13,9 @@ export function ProjectsSection() {
         {/* Section Heading */}
         <SectionHeading className="flex flex-col items-center justify-center gap-3 mb-12">
           <Code2 className="h-8 w-8 text-primary" />
-          <motion.h2 
-            className="gradient-text-heading inline-block cursor-pointer"
-            onHoverStart={(event) => {
-              const target = event.currentTarget;
-              target.style.animation = "glitch-text 0.3s ease-in-out";
-            }}
-          >
+          <h2 className="gradient-text-heading">
             <StaggeredText text="Featured Projects" delay={0.1} glitch={false} />
-          </motion.h2>
+          </h2>
           <div className="w-16 gradient-underline-animated" />
         </SectionHeading>
 
