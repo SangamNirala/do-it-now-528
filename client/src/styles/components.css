@@ -26,6 +26,31 @@
     @apply relative bg-gradient-to-r from-blue-500 via-blue-600 to-blue-600 hover:from-blue-400 hover:via-blue-500 hover:to-blue-500 text-white border border-white/30 hover:border-white/50 shadow-lg hover:shadow-xl hover:shadow-blue-500/50 transition-all duration-300;
   }
 
+  /* Enhanced Logo Badge */
+  .logo-badge {
+    @apply relative inline-flex items-center justify-center w-10 h-10 rounded-lg font-bold text-sm transition-all duration-300;
+    background: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(271 91% 65%) 50%, hsl(340 82% 52%) 100%);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  }
+
+  .logo-badge::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .logo-badge:hover {
+    @apply scale-110 shadow-lg;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5), inset 0 2px 8px rgba(255, 255, 255, 0.2);
+  }
+
+  .logo-badge-text {
+    @apply relative z-10 text-white font-bold tracking-wider;
+  }
+
   /* Gradient border effects */
   .gradient-border {
     position: relative;

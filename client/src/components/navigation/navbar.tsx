@@ -52,14 +52,16 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <button
+          <motion.button
             onClick={() => scrollToSection("home")}
-            className="text-lg font-bold text-foreground hover:text-primary transition-colors cursor-pointer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="logo-badge"
             data-testid="nav-logo"
             aria-label="Portfolio home"
           >
-            SN
-          </button>
+            <span className="logo-badge-text">SN</span>
+          </motion.button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6" role="menubar">
