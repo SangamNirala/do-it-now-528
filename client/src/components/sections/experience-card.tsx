@@ -10,6 +10,7 @@ interface ExperienceCardProps {
   index: number;
   onTimelineNodeHover: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onTimelineNodeLeave: () => void;
+  onTimelineNodeTouch?: (e: React.TouchEvent<HTMLButtonElement>) => void;
   onTimelineNodeClick: () => void;
 }
 
@@ -18,6 +19,7 @@ export function ExperienceCard({
   index,
   onTimelineNodeHover,
   onTimelineNodeLeave,
+  onTimelineNodeTouch,
   onTimelineNodeClick,
 }: ExperienceCardProps) {
   return (
@@ -32,7 +34,8 @@ export function ExperienceCard({
             onClick={onTimelineNodeClick}
             onMouseEnter={onTimelineNodeHover}
             onMouseLeave={onTimelineNodeLeave}
-            className="timeline-node absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-primary via-blue-400 to-primary border-4 border-background -translate-x-1/2 z-10 cursor-pointer transition-all duration-300 hover:scale-150 hover:shadow-2xl"
+            onTouchStart={onTimelineNodeTouch}
+            className="timeline-node absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-br from-primary via-blue-400 to-primary border-4 border-background -translate-x-1/2 z-10 cursor-pointer transition-all duration-300 hover:scale-150 hover:shadow-2xl active:scale-125"
             animate={{ scale: [1, 1.15, 1] }}
             transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.3 }}
             data-testid={`timeline-dot-${index}`}

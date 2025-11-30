@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -13,11 +14,17 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
+
   return (
     <StaggeredItem>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onTouchStart={() => setIsTouched(!isTouched)}
         whileHover={{
           scale: 1.08,
           rotateZ: 2,
@@ -80,9 +87,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             })}
           </div>
 
-          {/* Hover Overlay with Buttons */}
+          {/* Hover/Touch Overlay with Buttons */}
           <motion.div
             initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered || isTouched ? 1 : 0 }}
             whileHover={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
             className="absolute inset-0 glass-overlay bg-black/60 flex items-center justify-center gap-4 flex-col"

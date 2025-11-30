@@ -10,8 +10,8 @@ export function Footer() {
   return (
     <footer className="bg-card border-t border-primary/10 relative" data-testid="section-footer" role="contentinfo">
       <div className="content-max-width mx-auto section-spacing-horizontal py-16">
-        {/* Footer Content Grid - 5 Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+        {/* Footer Content Grid - Responsive: 2 cols mobile, 3 cols tablet, 5 cols desktop */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
           {footerColumns.map((column, index) => (
             <motion.div
               key={column.title}
