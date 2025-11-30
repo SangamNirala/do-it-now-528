@@ -47,7 +47,11 @@
   }
 
   .logo-badge-text {
-    @apply relative z-10 text-white font-bold tracking-wider;
+    @apply relative z-10 text-slate-900 dark:text-white font-bold tracking-wider;
+  }
+  
+  .dark .logo-badge-text {
+    @apply text-white;
   }
 
   /* Enhanced Navbar Glassmorphism */
