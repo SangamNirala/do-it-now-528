@@ -39,7 +39,7 @@ export function AboutSection() {
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.7, delay: 0.3, type: "spring", stiffness: 100 }}
               whileHover={{ scale: 1.015 }}
-              className="section-subtitle tracking-normal sm:tracking-wide max-w-full px-3 mx-auto leading-tight"
+              className="section-subtitle tracking-normal sm:tracking-wide max-w-full px-3 mx-auto leading-tight text-foreground/85 font-medium"
               data-testid="text-about-subtitle"
               style={{ willChange: "transform, opacity, filter" }}
             >
