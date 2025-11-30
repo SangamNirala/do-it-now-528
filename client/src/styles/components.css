@@ -190,7 +190,7 @@
   }
   
   .dark .nav-item {
-    @apply text-muted-foreground;
+    color: #9ca3af;
   }
 
   /* Utility Button Styling (Theme Toggle, etc) */
