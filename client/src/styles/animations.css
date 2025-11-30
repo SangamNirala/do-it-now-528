@@ -492,6 +492,84 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* Scroll-Triggered Text Animations */
+
+  /* Glitch Effect */
+  @keyframes glitch-text {
+    0%, 100% {
+      clip-path: inset(0 0 0 0);
+      transform: translateX(0);
+    }
+    20% {
+      clip-path: inset(0 0 65% 0);
+      transform: translateX(-2px);
+    }
+    40% {
+      clip-path: inset(0 0 58% 0);
+      transform: translateX(2px);
+    }
+    60% {
+      clip-path: inset(0 0 77% 0);
+      transform: translateX(-2px);
+    }
+    80% {
+      clip-path: inset(0 0 100% 0);
+      transform: translateX(0);
+    }
+  }
+
+  .glitch-text {
+    animation: glitch-text 0.3s ease-in-out;
+  }
+
+  /* Text Reveal with Blur */
+  @keyframes reveal-blur {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0px);
+    }
+  }
+
+  .reveal-blur {
+    animation: reveal-blur 0.8s ease-out;
+  }
+
+  /* Staggered Line Reveal */
+  @keyframes line-reveal {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  .line-reveal {
+    animation: line-reveal 0.6s ease-out forwards;
+  }
+
+  /* Word Pop-in */
+  @keyframes word-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) rotateZ(-10deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotateZ(0deg);
+    }
+  }
+
+  .word-pop {
+    animation: word-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
     * {

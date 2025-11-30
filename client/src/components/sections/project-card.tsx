@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Code2, Rocket, Zap } from "lucide-react";
 import { StaggeredItem } from "@/components/animations/scroll-animations";
+import { StaggeredText } from "@/components/animations/staggered-text";
 import { AnimatedMetric } from "./animated-metric";
 import type { Project } from "./projects-data";
 
