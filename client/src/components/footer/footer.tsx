@@ -25,13 +25,15 @@ export function Footer() {
               <ul className="space-y-3">
                 {column.links.map((link) => (
                   <li key={link.name}>
-                    <a
+                    <motion.a
                       href={link.href}
-                      className="text-xs text-muted-foreground hover:gradient-text-small hover:font-semibold transition-all duration-200"
+                      className="text-xs text-muted-foreground text-underline-hover transition-all duration-200"
+                      whileHover={{ color: "#7c3aed", scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
                       data-testid={`link-footer-${column.title.toLowerCase()}-${link.name.toLowerCase()}`}
                     >
                       {link.name}
-                    </a>
+                    </motion.a>
                   </li>
                 ))}
               </ul>
@@ -79,23 +81,28 @@ export function Footer() {
             {socialLinks.map((social) => {
               const Icon = social.icon;
               return (
-                <Button
+                <motion.div
                   key={social.name}
-                  variant="ghost"
-                  size="icon"
-                  asChild
-                  className="hover-elevate active-elevate-2"
-                  data-testid={`button-social-${social.name.toLowerCase()}`}
+                  whileHover={{ scale: 1.2, rotate: 360 }}
+                  transition={{ type: "spring", stiffness: 300, duration: 0.6 }}
                 >
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit ${social.name}`}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    asChild
+                    className="hover-elevate active-elevate-2 icon-hover-rotate"
+                    data-testid={`button-social-${social.name.toLowerCase()}`}
                   >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                </Button>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit ${social.name}`}
+                    >
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  </Button>
+                </motion.div>
               );
             })}
           </motion.div>

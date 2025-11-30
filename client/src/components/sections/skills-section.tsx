@@ -59,26 +59,41 @@ export function SkillsSection() {
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="flex items-center gap-3"
+                          whileHover={{ x: 4 }}
+                          className="flex items-center gap-3 cursor-pointer"
                         >
                           {SkillIcon && (
-                            <SkillIcon className="h-5 w-5 text-primary flex-shrink-0" />
+                            <motion.div
+                              whileHover={{ rotate: 360, scale: 1.2 }}
+                              transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
+                              className="icon-hover-rotate"
+                            >
+                              <SkillIcon className="h-5 w-5 text-primary flex-shrink-0" />
+                            </motion.div>
                           )}
-                          <span className="text-sm font-medium text-foreground">
+                          <motion.span 
+                            className="text-sm font-medium text-foreground text-underline-hover"
+                            whileHover={{ color: "#7c3aed" }}
+                          >
                             {skill}
-                          </span>
+                          </motion.span>
                         </motion.div>
                       );
                     })}
                   </div>
 
                   {/* Tech Badge */}
-                  <Badge
-                    variant="secondary"
-                    className={`mt-6 bg-gradient-to-r ${config.color} text-white border-0`}
+                  <motion.div
+                    whileHover={{ scale: 1.12, y: -2 }}
+                    transition={{ type: "spring", stiffness: 400 }}
                   >
-                    {skills.length} Skills
-                  </Badge>
+                    <Badge
+                      variant="secondary"
+                      className={`mt-6 bg-gradient-to-r ${config.color} text-white border-0 skill-badge-hover cursor-pointer inline-block`}
+                    >
+                      {skills.length} Skills
+                    </Badge>
+                  </motion.div>
                 </Card>
               </AnimatedSection>
             );

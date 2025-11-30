@@ -18,7 +18,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="glass-enhanced gradient-border-animated card-depth-3 p-0 overflow-hidden group transition-all duration-300 transform hover:scale-105 rounded-lg card-3d-hover hover-depth flex flex-col"
+        whileHover={{
+          scale: 1.08,
+          rotateZ: 2,
+          boxShadow: "0 30px 60px rgba(0, 0, 0, 0.3)"
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        className="glass-enhanced gradient-border-animated card-depth-3 p-0 overflow-hidden group rounded-lg card-3d-hover hover-depth flex flex-col magnetic-hover"
         data-testid={`card-project-${index}`}
       >
         {/* Header Section with Gradient Background */}
@@ -77,24 +83,46 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             className="absolute inset-0 glass-overlay bg-black/60 flex items-center justify-center gap-4 flex-col"
             style={{ willChange: "opacity" }}
           >
-            <Button
-              size="sm"
-              onClick={() => window.open(project.github, "_blank")}
-              className="bg-white text-black hover:bg-gray-200 font-semibold transition-all duration-300 transform hover:scale-110"
-              data-testid={`button-view-code-${index}`}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400 }}
             >
-              <Code2 className="mr-2 h-4 w-4" />
-              View Code
-            </Button>
-            <Button
-              size="sm"
-              onClick={() => window.open(project.demo, "_blank")}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold transition-all duration-300 transform hover:scale-110"
-              data-testid={`button-live-demo-${index}`}
+              <Button
+                size="sm"
+                onClick={() => window.open(project.github, "_blank")}
+                className="bg-white text-black hover:bg-gray-200 font-semibold transition-all duration-300 button-icon-animated button-ripple"
+                data-testid={`button-view-code-${index}`}
+              >
+                <motion.span
+                  className="icon-slide"
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Code2 className="mr-2 h-4 w-4 inline" />
+                </motion.span>
+                View Code
+              </Button>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400 }}
             >
-              <Rocket className="mr-2 h-4 w-4" />
-              Live Demo
-            </Button>
+              <Button
+                size="sm"
+                onClick={() => window.open(project.demo, "_blank")}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold transition-all duration-300 button-icon-animated button-ripple"
+                data-testid={`button-live-demo-${index}`}
+              >
+                <motion.span
+                  className="icon-slide"
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Rocket className="mr-2 h-4 w-4 inline" />
+                </motion.span>
+                Live Demo
+              </Button>
+            </motion.div>
           </motion.div>
 
           {/* Gradient Overlay */}

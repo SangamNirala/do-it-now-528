@@ -42,12 +42,21 @@ export function ExperienceCard({
           />
 
           {/* Experience Card */}
-          <Card
-            className={`glass-dark gradient-border card-depth-2 ml-12 md:ml-0 md:w-1/2 p-6 transition-all duration-300 transform hover:scale-105 cursor-pointer ${
+          <motion.div
+            whileHover={{
+              scale: 1.08,
+              rotateZ: 1,
+              boxShadow: "0 25px 50px rgba(0, 0, 0, 0.2)"
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className={`ml-12 md:ml-0 md:w-1/2 cursor-pointer ${
               index % 2 === 0 ? "md:mr-8" : "md:ml-8"
             }`}
-            data-testid={`card-experience-${index}`}
           >
+            <Card
+              className="glass-dark gradient-border card-depth-2 p-6 magnetic-hover"
+              data-testid={`card-experience-${index}`}
+            >
             {/* Header with Logo */}
             <div className="flex items-start gap-4 mb-4">
               <motion.div
@@ -106,7 +115,8 @@ export function ExperienceCard({
                 </Badge>
               ))}
             </div>
-          </Card>
+            </Card>
+          </motion.div>
         </div>
       </AnimatedSection>
     </div>
