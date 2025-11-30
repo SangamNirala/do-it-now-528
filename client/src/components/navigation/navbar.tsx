@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sun, Moon, Menu, X, Download } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
@@ -11,6 +11,7 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
   const [underlineStyle, setUnderlineStyle] = useState({ width: 0, x: 0 });
   const navRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const { theme, toggleTheme } = useTheme();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,8 +60,15 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
   const navItems = ["About", "Experience", "Projects", "Skills", "Education"];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 navbar-glass cursor-pointer" data-testid="navbar" role="navigation" aria-label="Main navigation">
-      <div className="max-w-6xl mx-auto px-8 py-5">
+    <>
+      {/* Scroll Progress Indicator */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-50 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+        style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
+      />
+      
+      <nav className="fixed top-0 left-0 right-0 z-40 navbar-glass cursor-pointer" data-testid="navbar" role="navigation" aria-label="Main navigation">
+        <div className="max-w-6xl mx-auto px-8 py-5">
         <div className="flex items-center justify-between gap-6 h-12">
           {/* Logo Section */}
           <div className="flex items-center gap-6">
@@ -100,10 +108,10 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className={`text-sm font-medium transition-colors duration-200 cursor-pointer relative py-2.5 px-2 rounded-md h-full flex items-center ${
+                className={`text-sm font-medium transition-all duration-200 cursor-pointer relative py-2.5 px-3 rounded-lg h-full flex items-center ${
                   activeSection === item.toLowerCase() 
-                    ? "text-primary" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
+                    ? "text-primary font-semibold" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-gradient-to-r hover:from-primary/15 hover:to-purple-500/15 hover:shadow-sm"
                 }`}
                 data-testid={`nav-link-${item.toLowerCase()}`}
                 role="menuitem"
@@ -219,5 +227,6 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
         onNavigate={scrollToSection}
       />
     </nav>
+    </>
   );
 }
