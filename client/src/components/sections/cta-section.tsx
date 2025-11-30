@@ -61,6 +61,27 @@ export function CTASection() {
         <AnimatedSection className="mb-12">
           <ContactForm />
         </AnimatedSection>
+
+        {/* Google Calendar Scheduling Section */}
+        <AnimatedSection className="mt-16 pt-12 border-t border-border">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">Schedule a Meeting</h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
+              Ready for a quick chat or ready to schedule an interview? Pick a time that works for you and let's connect!
+            </p>
+            <motion.a
+              href="https://calendar.app.google/feQ41WuhEkpCdQjS6"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-block px-8 py-3 rounded-lg bg-gradient-to-r from-primary to-purple-500 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover-elevate"
+              data-testid="button-schedule-meeting"
+            >
+              Schedule on Google Calendar
+            </motion.a>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
