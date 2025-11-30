@@ -3,15 +3,55 @@
 @layer utilities {
   /* Glass effects */
   .glass {
-    @apply backdrop-blur-xl bg-white/10 border border-white/20;
+    @apply backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-2xl bg-black/20 dark:bg-white/5 border border-white/10 dark:border-white/20 rounded-2xl transition-all duration-300;
+  }
+
+  .glass-enhanced {
+    @apply backdrop-blur-3xl bg-gradient-to-br from-white/15 to-white/5 dark:from-white/10 dark:to-white/5 border border-white/20 dark:border-white/15 rounded-2xl shadow-xl shadow-black/10 dark:shadow-black/30;
+  }
+
+  .glass-animated {
+    @apply backdrop-blur-2xl bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/15 rounded-2xl animate-glass-fade;
   }
 
   .glass-button {
-    @apply backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300;
+    @apply backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 rounded-lg;
   }
 
   .glass-button-primary {
     @apply relative bg-gradient-to-r from-blue-500 via-blue-600 to-blue-600 hover:from-blue-400 hover:via-blue-500 hover:to-blue-500 text-white border border-white/30 hover:border-white/50 shadow-lg hover:shadow-xl hover:shadow-blue-500/50 transition-all duration-300;
+  }
+
+  /* Gradient border effects */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(#fff, #fff) padding-box, 
+                linear-gradient(135deg, hsl(217 91% 60%), hsl(271 91% 65%), hsl(340 82% 52%)) border-box;
+    border: 2px solid transparent;
+  }
+
+  .dark .gradient-border {
+    background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+                linear-gradient(135deg, hsl(217 91% 60%), hsl(271 91% 65%), hsl(340 82% 52%)) border-box;
+    border: 2px solid transparent;
+  }
+
+  .gradient-border-animated {
+    position: relative;
+    background: linear-gradient(#fff, #fff) padding-box,
+                linear-gradient(90deg, hsl(217 91% 60%), hsl(271 91% 65%), hsl(340 82% 52%), hsl(217 91% 60%)) border-box;
+    border: 2px solid transparent;
+    background-size: calc(100% - 4px) calc(100% - 4px), 300% 100%;
+    animation: gradientBorderShift 6s ease infinite;
+  }
+
+  .dark .gradient-border-animated {
+    background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+                linear-gradient(90deg, hsl(217 91% 60%), hsl(271 91% 65%), hsl(340 82% 52%), hsl(217 91% 60%)) border-box;
   }
 
   /* Project Card */
@@ -74,8 +114,42 @@
     @apply text-4xl md:text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-purple-500 bg-clip-text text-transparent tracking-tight;
   }
 
+  /* Gradient text animations */
+  .gradient-text {
+    background: linear-gradient(135deg, #7c3aed, #0ea5e9, #a855f7, #0ea5e9, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+  }
+
+  .gradient-text-heading {
+    @apply text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+    background: linear-gradient(135deg, #7c3aed 0%, #0ea5e9 25%, #a855f7 50%, #0ea5e9 75%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  .gradient-text-small {
+    background: linear-gradient(90deg, #7c3aed, #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .gradient-underline {
     @apply h-1.5 bg-gradient-to-r from-primary via-purple-500 to-pink-500 rounded-full;
+  }
+
+  .gradient-underline-animated {
+    @apply h-2 rounded-full;
+    background: linear-gradient(90deg, hsl(217 91% 60%), hsl(271 91% 65%), hsl(340 82% 52%), hsl(217 91% 60%));
+    background-size: 200% 100%;
+    animation: gradientShift 4s ease infinite;
   }
 
   /* Education and honors cards */

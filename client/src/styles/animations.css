@@ -117,6 +117,70 @@
     animation: blob-3 24s ease-in-out infinite;
   }
 
+  /* Gradient animations */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes gradientBorderShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes glassFade {
+    0% {
+      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    50% {
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+    100% {
+      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  @keyframes shimmerGradient {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-gradient-shift {
+    animation: gradientShift 6s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  .animate-glass-fade {
+    animation: glassFade 4s ease-in-out infinite;
+  }
+
+  .animate-shimmer-gradient {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 1000px 100%;
+    animation: shimmerGradient 3s infinite;
+  }
+
   /* Timeline animations */
   @keyframes timeline-node-glow {
     0%, 100% {
