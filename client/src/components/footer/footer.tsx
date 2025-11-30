@@ -8,8 +8,11 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card border-t border-primary/10 relative" data-testid="section-footer" role="contentinfo">
-      <div className="content-max-width mx-auto section-spacing-horizontal py-16">
+    <footer className="bg-card border-t border-primary/10 relative overflow-hidden" data-testid="section-footer" role="contentinfo">
+      {/* Subtle Background Enhancement */}
+      <div className="footer-background-enhancement" aria-hidden="true" />
+      
+      <div className="content-max-width mx-auto section-spacing-horizontal py-16 relative z-10">
         {/* Footer Content Grid - Responsive: 2 cols mobile, 3 cols tablet, 5 cols desktop */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
           {footerColumns.map((column, index) => (

@@ -595,6 +595,53 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
+  /* Footer Background Enhancement */
+  .footer-background-enhancement {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .footer-background-enhancement::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(124, 58, 237, 0.08) 0%,
+      rgba(168, 85, 247, 0.04) 25%,
+      transparent 65%
+    );
+    opacity: 0.5;
+  }
+
+  .footer-background-enhancement::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(124, 58, 237, 0.06) 1px, transparent 1px),
+      radial-gradient(circle at 25px 25px, rgba(168, 85, 247, 0.04) 1px, transparent 1px);
+    background-size: 50px 50px, 100px 100px;
+    background-position: 0 0, 25px 25px;
+    opacity: 0.6;
+  }
+
+  .dark .footer-background-enhancement::before {
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(124, 58, 237, 0.12) 0%,
+      rgba(168, 85, 247, 0.06) 25%,
+      transparent 65%
+    );
+    opacity: 0.4;
+  }
+
+  .dark .footer-background-enhancement::after {
+    opacity: 0.35;
+  }
+
   .footer-section-title {
     @apply text-lg font-bold text-foreground mb-4;
   }
