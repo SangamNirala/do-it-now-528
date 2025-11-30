@@ -186,7 +186,20 @@
 
   /* Utility Button Styling (Theme Toggle, etc) */
   .utility-button {
-    @apply relative p-2.5 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer h-full flex items-center justify-center;
+    @apply relative p-2.5 rounded-full transition-colors duration-300 hover:bg-primary/10 cursor-pointer h-full flex items-center justify-center;
+    color: #404854;
+  }
+  
+  .utility-button:hover {
+    @apply text-foreground;
+  }
+  
+  .dark .utility-button {
+    color: #a1a8b8;
+  }
+  
+  .dark .utility-button:hover {
+    @apply text-foreground;
   }
 
   .utility-button-mobile {
