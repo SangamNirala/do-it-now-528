@@ -1,6 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
+  "startCommand": "npm start",
   "outputDirectory": "dist",
   "framework": null,
   "env": {
@@ -13,15 +14,6 @@
         {
           "key": "Content-Type",
           "value": "text/html; charset=utf-8"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=3600"
         }
       ]
     }
