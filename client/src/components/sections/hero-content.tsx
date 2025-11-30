@@ -41,7 +41,8 @@ export function HeroContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent tracking-tight mb-4 line-clamp-2 sm:line-clamp-none"
+          whileHover={{ letterSpacing: "0.05em" }}
+          className="hero-title bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent mb-4 line-clamp-2 sm:line-clamp-none heading-letter-spacing-hover"
           data-testid="text-hero-name"
           style={{ willChange: "transform, opacity" }}
         >
@@ -50,24 +51,25 @@ export function HeroContent() {
 
         {/* Hero Subtitle */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-lg sm:text-xl md:text-2xl text-blue-200 font-medium mb-6 break-words"
+          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.7, delay: 0.5, type: "spring", stiffness: 100 }}
+          whileHover={{ scale: 1.02, letterSpacing: "0.02em" }}
+          className="hero-subtitle text-blue-100/95 mb-6 break-words heading-letter-spacing-hover"
           data-testid="text-hero-title"
-          style={{ willChange: "transform, opacity" }}
+          style={{ willChange: "transform, opacity, filter" }}
         >
           Machine Learning Engineer
         </motion.p>
 
         {/* Hero Description */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed px-2 break-words"
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 80 }}
+          className="section-description text-gray-200/90 max-w-2xl mx-auto mb-8 px-2 break-words"
           data-testid="text-hero-summary"
-          style={{ willChange: "transform, opacity" }}
+          style={{ willChange: "transform, opacity, filter" }}
         >
           Building production-ready ML systems with expertise in MLOps, deep learning, and cloud deployment. Passionate about end-to-end pipeline automation and scalable model deployment.
         </motion.p>

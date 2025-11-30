@@ -58,7 +58,12 @@ export function ExperienceSection() {
         <AnimatedSection>
           <div className="flex flex-col items-center justify-center gap-3 mb-12">
             <Briefcase className="h-8 w-8 text-primary" />
-            <h2 className="gradient-text-heading">Experience</h2>
+            <motion.h2 
+              whileHover={{ letterSpacing: "0.03em" }}
+              className="gradient-text-heading heading-letter-spacing-hover cursor-default"
+            >
+              Experience
+            </motion.h2>
             <div className="w-16 gradient-underline-animated" />
           </div>
         </AnimatedSection>

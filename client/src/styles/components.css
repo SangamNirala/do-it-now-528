@@ -125,13 +125,39 @@
   }
 
   .gradient-text-heading {
-    @apply text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+    @apply text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight transition-all duration-300;
     background: linear-gradient(135deg, #7c3aed 0%, #0ea5e9 25%, #a855f7 50%, #0ea5e9 75%, #7c3aed 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     background-size: 200% 200%;
     animation: gradientShift 8s ease infinite;
+  }
+
+  /* Typography hierarchy enhancements */
+  .section-heading {
+    @apply text-2xl md:text-4xl lg:text-5xl font-bold tracking-normal hover:tracking-wider transition-all duration-300 cursor-default;
+  }
+
+  .section-subtitle {
+    @apply text-xs sm:text-sm md:text-base lg:text-lg text-primary/90 font-semibold;
+  }
+
+  .section-description {
+    @apply text-sm sm:text-base md:text-lg text-muted-foreground/95 font-normal leading-relaxed;
+  }
+
+  /* Hero section typography */
+  .hero-title {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight hover:tracking-tight transition-all duration-300;
+  }
+
+  .hero-subtitle {
+    @apply text-lg sm:text-xl md:text-2xl font-medium transition-all duration-300;
+  }
+
+  .heading-letter-spacing-hover:hover {
+    @apply tracking-wider;
   }
 
   .gradient-text-small {
