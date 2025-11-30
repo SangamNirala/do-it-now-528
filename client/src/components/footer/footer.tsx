@@ -33,13 +33,14 @@ export function Footer() {
                   <li key={link.name}>
                     <motion.a
                       href={link.href}
-                      className="text-xs text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-1.5 group/link"
-                      whileHover={{ x: 3 }}
+                      className="text-xs text-muted-foreground hover:text-primary transition-colors duration-200 inline-flex items-center gap-2 group/link relative"
+                      whileHover={{ scale: 1.06 }}
                       transition={{ duration: 0.2 }}
                       data-testid={`link-footer-${column.title.toLowerCase()}-${link.name.toLowerCase()}`}
                     >
-                      <span className="w-0 h-px bg-gradient-to-r from-primary to-purple-500 group-hover/link:w-3 transition-all duration-200" />
-                      {link.name}
+                      <span className="h-0.5 bg-gradient-to-r from-primary via-purple-500 to-pink-500 group-hover/link:w-full transition-all duration-200 origin-left" style={{ width: 0 }} />
+                      <span className="relative">{link.name}</span>
+                      <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-primary via-purple-500 to-pink-500 group-hover/link:w-full transition-all duration-200 origin-left" />
                     </motion.a>
                   </li>
                 ))}
