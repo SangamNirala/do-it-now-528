@@ -60,8 +60,8 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 navbar-glass cursor-pointer" data-testid="navbar" role="navigation" aria-label="Main navigation">
-      <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto px-8 py-5">
+        <div className="flex items-center justify-between gap-6 h-12">
           {/* Logo */}
           <motion.button
             onClick={() => scrollToSection("home")}
@@ -75,7 +75,7 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
           </motion.button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6 relative" role="menubar">
+          <div className="hidden md:flex items-center gap-8 relative" role="menubar">
             {/* Animated Underline */}
             <motion.div
               className="absolute bottom-0 h-0.5 bg-gradient-to-r from-primary to-purple-500"
@@ -94,7 +94,7 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className={`text-sm font-medium transition-colors duration-200 cursor-pointer relative py-2 px-1 rounded-md ${
+                className={`text-sm font-medium transition-colors duration-200 cursor-pointer relative py-2.5 px-2 rounded-md h-full flex items-center ${
                   activeSection === item.toLowerCase() 
                     ? "text-primary" 
                     : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
@@ -110,7 +110,7 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4 h-full">
             {/* AI Button */}
             <motion.button
               onClick={onAIClick}
@@ -132,7 +132,7 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="relative p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer"
+              className="relative p-2.5 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer h-full flex items-center justify-center"
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
               data-testid="button-theme-toggle"
               aria-pressed={theme === "dark"}

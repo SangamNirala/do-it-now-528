@@ -23,14 +23,14 @@ export function MobileMenu({ isOpen, navItems, activeSection, onNavigate }: Mobi
         role="navigation"
         aria-label="Mobile navigation"
       >
-        <div className="px-4 py-3 space-y-1 backdrop-blur-lg" role="menubar">
+        <div className="px-6 py-4 space-y-2 backdrop-blur-lg" role="menubar">
           {navItems.map((item) => (
             <motion.button
               key={item}
               type="button"
               onClick={() => onNavigate(item.toLowerCase())}
-              whileHover={{ x: 4 }}
-              className={`block w-full text-left py-3 px-4 rounded-lg font-medium transition-all duration-300 cursor-pointer text-base sm:text-lg ${
+              whileHover={{ x: 6 }}
+              className={`block w-full text-left py-3.5 px-5 rounded-lg font-medium transition-all duration-300 cursor-pointer text-base sm:text-lg ${
                 activeSection === item.toLowerCase()
                   ? "text-primary bg-primary/15 border border-primary/30 font-semibold"
                   : "text-muted-foreground hover:text-foreground hover:bg-primary/10 hover:border hover:border-primary/20"
