@@ -1,113 +1,108 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, Code2, FileCode, Globe, Database, Brain, Layers, Cpu, Eye, Rocket, Network, Zap, Container, Server, GitBranch, Cloud } from "lucide-react";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
-import type { LucideIcon } from "lucide-react";
-
-const skillIcons: Record<string, LucideIcon> = {
-  Python: FileCode,
-  "HTML/CSS": Globe,
-  JavaScript: Code2,
-  SQL: Database,
-  TensorFlow: Brain,
-  Keras: Layers,
-  PyTorch: Cpu,
-  "Scikit-learn": Brain,
-  NLP: Brain,
-  "Computer Vision": Eye,
-  MLOps: Rocket,
-  LangChain: Network,
-  MLflow: Zap,
-  DVC: Database,
-  Docker: Container,
-  Jenkins: Server,
-  Git: GitBranch,
-  GCP: Cloud,
-  "Cloud Run": Rocket,
-  Streamlit: Globe,
-  Flask: Server,
-  FastAPI: Zap,
-};
-
-const skillsByTier = {
-  Expert: ["Python", "TensorFlow", "PyTorch", "Computer Vision", "Flask"],
-  Intermediate: ["JavaScript", "HTML/CSS", "Docker", "GCP", "NLP", "LangChain"],
-  Familiar: ["FastAPI", "Streamlit", "Keras", "Jenkins", "Scikit-learn", "DVC"],
-};
-
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={className}
-      style={{ willChange: "transform, opacity" }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { AnimatedSection } from "@/components/utils/animated-section";
+import { skillIcons, skillsByTier, tierConfig, StarIcon } from "./skills-data";
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="pt-16 spacing-section-lg bg-card section-pattern-subtle relative" data-testid="section-skills" role="region" aria-label="Technical skills section">
+    <section
+      id="skills"
+      className="pt-16 spacing-section-lg bg-card section-pattern-subtle relative"
+      data-testid="section-skills"
+      role="region"
+      aria-label="Technical skills section"
+    >
       <div className="content-max-width mx-auto section-spacing-horizontal">
+        {/* Section Heading */}
         <AnimatedSection>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12 text-center">Technical Skills</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12 text-center">
+            Technical Skills
+          </h2>
         </AnimatedSection>
 
+        {/* Skills Grid by Tier */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {Object.entries(skillsByTier).map(([tier, skills], tierIndex) => {
-            const tierColors = {
-              Expert: "from-yellow-500 to-orange-600",
-              Intermediate: "from-blue-500 to-purple-600",
-              Familiar: "from-green-500 to-teal-600",
-            };
-            const starCount = {
-              Expert: 5,
-              Intermediate: 3,
-              Familiar: 2,
-            };
+            const config = tierConfig[tier as keyof typeof tierConfig];
 
             return (
               <AnimatedSection key={tier}>
-                <Card className="card-depth-2 p-6 transition-all duration-300 transform hover:scale-105 cursor-pointer" data-testid={`card-skill-tier-${tierIndex}`}>
+                <Card
+                  className="card-depth-2 p-6 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                  data-testid={`card-skill-tier-${tierIndex}`}
+                >
+                  {/* Tier Header */}
                   <div className="flex items-center gap-3 mb-4">
-                    <div className={`p-3 rounded-lg bg-gradient-to-br ${tierColors[tier as keyof typeof tierColors]}`}>
+                    <div
+                      className={`p-3 rounded-lg bg-gradient-to-br ${config.color}`}
+                    >
                       <span className="text-sm font-bold text-white">{tier}</span>
                     </div>
+                    <div className="flex gap-1">
+                      {Array.from({ length: config.stars }).map((_, i) => (
+                        <StarIcon
+                          key={i}
+                          className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                        />
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-4 w-4 ${i < starCount[tier as keyof typeof starCount] ? "fill-primary text-primary" : "text-muted-foreground"}`}
-                      />
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
+
+                  {/* Skills List */}
+                  <div className="space-y-3">
                     {skills.map((skill) => {
-                      const SkillIcon = skillIcons[skill] || Code2;
+                      const SkillIcon = skillIcons[skill];
                       return (
-                        <Badge key={skill} variant="secondary" className="font-mono text-xs flex items-center gap-1.5">
-                          <SkillIcon className="h-3 w-3" />
-                          {skill}
-                        </Badge>
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="flex items-center gap-3"
+                        >
+                          {SkillIcon && (
+                            <SkillIcon className="h-5 w-5 text-primary flex-shrink-0" />
+                          )}
+                          <span className="text-sm font-medium text-foreground">
+                            {skill}
+                          </span>
+                        </motion.div>
                       );
                     })}
                   </div>
+
+                  {/* Tech Badge */}
+                  <Badge
+                    variant="secondary"
+                    className={`mt-6 bg-gradient-to-r ${config.color} text-white border-0`}
+                  >
+                    {skills.length} Skills
+                  </Badge>
                 </Card>
               </AnimatedSection>
             );
           })}
         </div>
+
+        {/* Skills Summary */}
+        <AnimatedSection className="mt-16 text-center">
+          <div className="bg-card/50 border border-primary/20 rounded-xl p-8">
+            <h3 className="text-xl font-semibold text-foreground mb-4">
+              Specializing In
+            </h3>
+            <div className="flex flex-wrap justify-center gap-2">
+              {skillsByTier.Expert.map((skill) => (
+                <Badge
+                  key={skill}
+                  className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white border-0"
+                >
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
