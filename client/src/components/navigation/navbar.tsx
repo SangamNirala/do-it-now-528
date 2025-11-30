@@ -119,7 +119,7 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
                 className={`text-sm font-medium transition-all duration-200 cursor-pointer relative py-2.5 px-3 rounded-lg h-full flex items-center z-10 ${
                   activeSection === item.toLowerCase() 
                     ? "text-primary font-semibold" 
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-gradient-to-r hover:from-primary/25 hover:to-purple-500/20 hover:shadow-sm"
                 }`}
                 data-testid={`nav-link-${item.toLowerCase()}`}
                 role="menuitem"
