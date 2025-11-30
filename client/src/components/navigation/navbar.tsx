@@ -116,10 +116,10 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className={`text-sm font-medium transition-all duration-200 cursor-pointer relative py-2.5 px-3 rounded-lg h-full flex items-center z-10 ${
+                className={`text-sm font-medium transition-all duration-200 cursor-pointer relative py-2.5 px-3 rounded-lg h-full flex items-center z-10 nav-item ${
                   activeSection === item.toLowerCase() 
                     ? "text-primary font-semibold" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-gradient-to-r hover:from-primary/25 hover:to-purple-500/20 hover:shadow-sm"
+                    : "hover:bg-gradient-to-r hover:from-primary/25 hover:to-purple-500/20 hover:shadow-sm"
                 }`}
                 data-testid={`nav-link-${item.toLowerCase()}`}
                 role="menuitem"

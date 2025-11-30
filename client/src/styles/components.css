@@ -184,6 +184,15 @@
     @apply flex items-center gap-3;
   }
 
+  /* Navigation Item Styling (darker text on light background) */
+  .nav-item {
+    color: #4a5568;
+  }
+  
+  .dark .nav-item {
+    @apply text-muted-foreground;
+  }
+
   /* Utility Button Styling (Theme Toggle, etc) */
   .utility-button {
     @apply relative p-2.5 rounded-full transition-colors duration-300 hover:bg-primary/10 cursor-pointer h-full flex items-center justify-center;
