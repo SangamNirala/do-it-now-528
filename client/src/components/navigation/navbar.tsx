@@ -62,21 +62,26 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
     <nav className="fixed top-0 left-0 right-0 z-40 navbar-glass cursor-pointer" data-testid="navbar" role="navigation" aria-label="Main navigation">
       <div className="max-w-6xl mx-auto px-8 py-5">
         <div className="flex items-center justify-between gap-6 h-12">
-          {/* Logo */}
-          <motion.button
-            onClick={() => scrollToSection("home")}
-            whileHover={{ scale: 1.08, y: -2 }}
-            whileTap={{ scale: 0.92 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="logo-badge"
-            data-testid="nav-logo"
-            aria-label="Portfolio home"
-          >
-            <span className="logo-badge-text">SN</span>
-          </motion.button>
+          {/* Logo Section */}
+          <div className="flex items-center gap-6">
+            {/* Logo */}
+            <motion.button
+              onClick={() => scrollToSection("home")}
+              whileHover={{ scale: 1.08, y: -2 }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              className="logo-badge flex-shrink-0"
+              data-testid="nav-logo"
+              aria-label="Portfolio home"
+            >
+              <span className="logo-badge-text">SN</span>
+            </motion.button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 relative" role="menubar">
+            {/* Visual Divider */}
+            <div className="hidden md:block w-px h-6 bg-gradient-to-b from-primary/0 via-primary/20 to-primary/0" />
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8 relative" role="menubar">
             {/* Animated Underline */}
             <motion.div
               className="absolute bottom-0 h-0.5 bg-gradient-to-r from-primary to-purple-500"
@@ -108,90 +113,100 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
                 {item}
               </motion.button>
             ))}
+            </div>
           </div>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-4 h-full">
-            {/* AI Button */}
-            <motion.button
-              onClick={onAIClick}
-              whileHover={{ scale: 1.08, y: -2 }}
-              whileTap={{ scale: 0.92 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="ai-button relative z-10"
-              aria-label="AI assistant"
-              data-testid="button-ai"
-            >
-              <svg className="w-4 h-4 relative z-10" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
-              </svg>
-              <span className="relative z-10">AI Chat</span>
-            </motion.button>
+          {/* Right Actions Group */}
+          <div className="navbar-actions-section">
+            {/* Visual Divider */}
+            <div className="hidden md:block navbar-divider" />
 
-            {/* Theme Toggle */}
-            <motion.button
-              onClick={toggleTheme}
-              whileHover={{ scale: 1.08, y: -2 }}
-              whileTap={{ scale: 0.92 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="relative p-2.5 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer h-full flex items-center justify-center"
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-              data-testid="button-theme-toggle"
-              aria-pressed={theme === "dark"}
-            >
+            {/* Primary CTA Buttons Group */}
+            <div className="navbar-primary-actions">
+              {/* AI Button */}
+              <motion.button
+                onClick={onAIClick}
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.92 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="ai-button relative z-10"
+                aria-label="AI assistant"
+                data-testid="button-ai"
+              >
+                <svg className="w-4 h-4 relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+                </svg>
+                <span className="relative z-10">AI Chat</span>
+              </motion.button>
+
+              {/* Resume Button */}
               <motion.div
-                initial={false}
-                animate={{ rotate: theme === "dark" ? 0 : 180, scale: 1 }}
-                transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.92 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                {theme === "dark" ? (
-                  <Moon className="h-5 w-5" />
-                ) : (
-                  <Sun className="h-5 w-5" />
-                )}
+                <Button
+                  size="sm"
+                  onClick={() => window.open("/api/resume", "_blank")}
+                  className="resume-button text-white"
+                  data-testid="nav-button-resume"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  <span className="hidden sm:inline">Resume</span>
+                </Button>
               </motion.div>
-            </motion.button>
+            </div>
 
-            {/* Mobile Menu Toggle */}
-            <motion.button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              whileHover={{ scale: 1.08, y: -2 }}
-              whileTap={{ scale: 0.92 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="md:hidden relative p-2.5 rounded-lg text-muted-foreground hover:text-foreground bg-primary/5 hover:bg-primary/15 transition-all duration-300 cursor-pointer border border-primary/20 hover:border-primary/40"
-              aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
-              data-testid="button-hamburger"
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              <motion.div
-                animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
-                transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
+            {/* Utility Buttons Group (subtle, secondary) */}
+            <div className="navbar-utility-buttons gap-2">
+              {/* Theme Toggle */}
+              <motion.button
+                onClick={toggleTheme}
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.92 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="utility-button"
+                aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+                data-testid="button-theme-toggle"
+                aria-pressed={theme === "dark"}
               >
-                {mobileMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
-              </motion.div>
-            </motion.button>
+                <motion.div
+                  initial={false}
+                  animate={{ rotate: theme === "dark" ? 0 : 180, scale: 1 }}
+                  transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
+                >
+                  {theme === "dark" ? (
+                    <Moon className="h-5 w-5" />
+                  ) : (
+                    <Sun className="h-5 w-5" />
+                  )}
+                </motion.div>
+              </motion.button>
 
-            {/* Resume Button */}
-            <motion.div
-              whileHover={{ scale: 1.08, y: -2 }}
-              whileTap={{ scale: 0.92 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            >
-              <Button
-                size="sm"
-                onClick={() => window.open("/api/resume", "_blank")}
-                className="resume-button text-white"
-                data-testid="nav-button-resume"
+              {/* Mobile Menu Toggle */}
+              <motion.button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.92 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="md:hidden utility-button-mobile"
+                aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+                data-testid="button-hamburger"
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-menu"
               >
-                <Download className="h-4 w-4 mr-2" />
-                <span className="hidden sm:inline">Resume</span>
-              </Button>
-            </motion.div>
+                <motion.div
+                  animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
+                  transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
+                >
+                  {mobileMenuOpen ? (
+                    <X className="h-6 w-6" />
+                  ) : (
+                    <Menu className="h-6 w-6" />
+                  )}
+                </motion.div>
+              </motion.button>
+            </div>
           </div>
         </div>
       </div>
