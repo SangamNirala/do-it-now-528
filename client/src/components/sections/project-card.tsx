@@ -17,13 +17,17 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
         whileHover={{
           scale: 1.08,
           rotateZ: 2,
           boxShadow: "0 30px 60px rgba(0, 0, 0, 0.3)"
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        transition={{
+          default: { duration: 0.5, delay: index * 0.1 },
+          scale: { type: "spring", stiffness: 300, damping: 25 },
+          rotateZ: { type: "spring", stiffness: 300, damping: 25 },
+          boxShadow: { type: "spring", stiffness: 300, damping: 25 }
+        }}
         className="glass-enhanced gradient-border-animated card-depth-3 p-0 overflow-hidden group rounded-lg card-3d-hover hover-depth flex flex-col magnetic-hover"
         data-testid={`card-project-${index}`}
       >
