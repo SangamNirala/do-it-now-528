@@ -43,7 +43,6 @@
   }
 
   .logo-badge:hover {
-    @apply scale-110 shadow-lg;
     box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5), inset 0 2px 8px rgba(255, 255, 255, 0.2);
   }
 
@@ -114,7 +113,6 @@
     background: linear-gradient(135deg, #2563EB 0%, #7C3AED 50%, #DB2777 100%);
     border: 2px solid rgba(59, 130, 246, 1);
     box-shadow: 0 0 30px rgba(59, 130, 246, 0.7), 0 12px 32px rgba(99, 102, 241, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
   }
 
   .ai-button::after {
@@ -142,6 +140,15 @@
     background: linear-gradient(135deg, #2563EB 0%, #7C3AED 50%, #DB2777 100%);
     border: 2px solid rgba(59, 130, 246, 1);
     box-shadow: 0 0 35px rgba(59, 130, 246, 0.8), 0 12px 32px rgba(99, 102, 241, 0.6), inset 0 1px 3px rgba(255, 255, 255, 0.25);
+  }
+
+  /* Unified Navigation Hover Effects */
+  .nav-item-hover:hover {
+    @apply bg-primary/10;
+  }
+
+  .icon-button-hover:hover {
+    @apply bg-primary/10;
   }
 
   /* Enhanced Resume Button */

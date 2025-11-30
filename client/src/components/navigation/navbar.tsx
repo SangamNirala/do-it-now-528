@@ -65,8 +65,9 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
           {/* Logo */}
           <motion.button
             onClick={() => scrollToSection("home")}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.08, y: -2 }}
+            whileTap={{ scale: 0.92 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className="logo-badge"
             data-testid="nav-logo"
             aria-label="Portfolio home"
@@ -114,9 +115,9 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
             {/* AI Button */}
             <motion.button
               onClick={onAIClick}
-              whileHover={{ scale: 1.08, y: -3 }}
+              whileHover={{ scale: 1.08, y: -2 }}
               whileTap={{ scale: 0.92 }}
-              transition={{ type: "spring", stiffness: 500, damping: 20 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="ai-button relative z-10"
               aria-label="AI assistant"
               data-testid="button-ai"
@@ -130,8 +131,9 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
             {/* Theme Toggle */}
             <motion.button
               onClick={toggleTheme}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.08, y: -2 }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="relative p-2.5 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-300 hover:bg-primary/10 cursor-pointer h-full flex items-center justify-center"
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
               data-testid="button-theme-toggle"
@@ -153,8 +155,9 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
             {/* Mobile Menu Toggle */}
             <motion.button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.08, y: -2 }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="md:hidden relative p-2.5 rounded-lg text-muted-foreground hover:text-foreground bg-primary/5 hover:bg-primary/15 transition-all duration-300 cursor-pointer border border-primary/20 hover:border-primary/40"
               aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
               data-testid="button-hamburger"
@@ -175,8 +178,8 @@ export function Navbar({ onGlossaryClick, onAIClick }: { onGlossaryClick: () => 
 
             {/* Resume Button */}
             <motion.div
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.08, y: -2 }}
+              whileTap={{ scale: 0.92 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               <Button
