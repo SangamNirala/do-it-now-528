@@ -61,31 +61,6 @@ export function CTASection() {
         <AnimatedSection className="mb-12">
           <ContactForm />
         </AnimatedSection>
-
-        <AnimatedSection>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.a
-              href="mailto:srnirala_b22@et.vjti.ac.in"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-semibold text-center hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg"
-              data-testid="cta-button-email"
-            >
-              Email Me
-            </motion.a>
-            <motion.a
-              href="https://linkedin.com/in/sangamnirala"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-lg border-2 border-primary text-primary font-semibold text-center hover:bg-primary/10 transition-all duration-300"
-              data-testid="cta-button-linkedin"
-            >
-              Connect on LinkedIn
-            </motion.a>
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   );
