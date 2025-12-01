@@ -63,7 +63,7 @@ function NeuralNetworkMesh() {
         const length = start.distanceTo(end);
         
         return (
-          <line key={`connection-${idx}`} position={mid}>
+          <group key={`connection-${idx}`} position={mid}>
             <bufferGeometry>
               <bufferAttribute
                 attach="attributes-position"
@@ -81,7 +81,7 @@ function NeuralNetworkMesh() {
               transparent
               opacity={0.3}
             />
-          </line>
+          </group>
         );
       })}
 
